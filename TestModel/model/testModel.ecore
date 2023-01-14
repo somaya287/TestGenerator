@@ -65,7 +65,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="thenBlock" lowerBound="1"
         eType="#//ThenBlock" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Instruction"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Instruction" abstract="true"/>
   <eClassifiers xsi:type="ecore:EClass" name="TestAnnotation">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="expectedException" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>

@@ -1,16 +1,7 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: %pluginName
-Bundle-SymbolicName: ActivityModel;singleton:=true
-Automatic-Module-Name: ActivityModel
+Bundle-Name: ActivityModel
+Bundle-SymbolicName: ActivityModel; singleton:=true
 Bundle-Version: 0.1.0.qualifier
-Bundle-ClassPath: .
-Bundle-Vendor: %providerName
-Bundle-Localization: plugin
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Export-Package: activitymodel,
- activitymodel.impl,
- activitymodel.util
 Require-Bundle: org.eclipse.emf.ecore;visibility:=reexport,
  org.eclipse.core.runtime
-Bundle-ActivationPolicy: lazy

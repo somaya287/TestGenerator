@@ -1,87 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
-    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/MDEproject/src" modelPluginID="MDEproject" modelName="TestModel"
-    rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container" importerID="org.eclipse.emf.importer.ecore"
-    complianceLevel="5.0" copyrightFields="false" operationReflection="true" importOrganizing="true">
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/TestModel/src-gen" creationIcons="false" editDirectory="/TestModel.edit/src-gen"
+    editorDirectory="/TestModel.editor/src-gen" modelPluginID="TestModel" modelName="TestModel"
+    rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container" codeFormatting="true"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="5.0" copyrightFields="false"
+    operationReflection="true" importOrganizing="true">
   <foreignModel>testModel.ecore</foreignModel>
-  <genPackages prefix="TestMetaModel" disposableProviderFactory="true" ecorePackage="testModel.ecore#/">
-    <genClasses ecoreClass="testModel.ecore#//TestPackage">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute testModel.ecore#//TestPackage/name"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference testModel.ecore#//TestPackage/parentPackage"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference testModel.ecore#//TestPackage/childrenPackage"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference testModel.ecore#//TestPackage/testFiles"/>
-    </genClasses>
-    <genClasses ecoreClass="testModel.ecore#//TestFile">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference testModel.ecore#//TestFile/testPackage"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute testModel.ecore#//TestFile/name"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference testModel.ecore#//TestFile/importBlock"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference testModel.ecore#//TestFile/testClass"/>
-    </genClasses>
-    <genClasses ecoreClass="testModel.ecore#//ImportBlock">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute testModel.ecore#//ImportBlock/staticMethods"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute testModel.ecore#//ImportBlock/classes"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference testModel.ecore#//ImportBlock/testFile"/>
-    </genClasses>
-    <genClasses ecoreClass="testModel.ecore#//TestClass">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute testModel.ecore#//TestClass/name"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute testModel.ecore#//TestClass/displayName"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference testModel.ecore#//TestClass/testFile"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference testModel.ecore#//TestClass/methods"/>
-    </genClasses>
-    <genClasses image="false" ecoreClass="testModel.ecore#//Method">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute testModel.ecore#//Method/name"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute testModel.ecore#//Method/displayName"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference testModel.ecore#//Method/testClass"/>
-    </genClasses>
-    <genClasses ecoreClass="testModel.ecore#//AfterAllMethod">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference testModel.ecore#//AfterAllMethod/instructions"/>
-    </genClasses>
-    <genClasses ecoreClass="testModel.ecore#//BeforeAllMethod">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference testModel.ecore#//BeforeAllMethod/instructions"/>
-    </genClasses>
-    <genClasses ecoreClass="testModel.ecore#//AfterEachMethod">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference testModel.ecore#//AfterEachMethod/instructions"/>
-    </genClasses>
-    <genClasses ecoreClass="testModel.ecore#//BeforeEachMethod">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference testModel.ecore#//BeforeEachMethod/instructions"/>
-    </genClasses>
-    <genClasses ecoreClass="testModel.ecore#//TestMethod">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference testModel.ecore#//TestMethod/testAnnotation"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference testModel.ecore#//TestMethod/givenBlock"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference testModel.ecore#//TestMethod/whenBlock"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference testModel.ecore#//TestMethod/thenBlock"/>
-    </genClasses>
-    <genClasses ecoreClass="testModel.ecore#//Instruction"/>
-    <genClasses ecoreClass="testModel.ecore#//TestAnnotation">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute testModel.ecore#//TestAnnotation/expectedException"/>
-    </genClasses>
-    <genClasses ecoreClass="testModel.ecore#//WhenBlock">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference testModel.ecore#//WhenBlock/testMethod"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference testModel.ecore#//WhenBlock/methodCallInstruction"/>
-    </genClasses>
-    <genClasses ecoreClass="testModel.ecore#//ThenBlock">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference testModel.ecore#//ThenBlock/testMethod"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference testModel.ecore#//ThenBlock/assertInstruction"/>
-    </genClasses>
-    <genClasses ecoreClass="testModel.ecore#//GivenBlock">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference testModel.ecore#//GivenBlock/testMethod"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference testModel.ecore#//GivenBlock/instruction"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference testModel.ecore#//GivenBlock/mockInstruction"/>
-    </genClasses>
-    <genClasses ecoreClass="testModel.ecore#//AssertInstruction">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute testModel.ecore#//AssertInstruction/assertionType"/>
-    </genClasses>
-    <genClasses ecoreClass="testModel.ecore#//MethodCallInstruction">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute testModel.ecore#//MethodCallInstruction/methodName"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference testModel.ecore#//MethodCallInstruction/parameters"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference testModel.ecore#//MethodCallInstruction/returnValue"/>
-    </genClasses>
-    <genClasses ecoreClass="testModel.ecore#//MockInstruction">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute testModel.ecore#//MockInstruction/className"/>
-    </genClasses>
-    <genClasses ecoreClass="testModel.ecore#//Variable">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute testModel.ecore#//Variable/Name"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute testModel.ecore#//Variable/Type"/>
-    </genClasses>
-  </genPackages>
+  <testsDirectory xsi:nil="true"/>
+  <genPackages prefix="TestModel" disposableProviderFactory="true" ecorePackage="testModel.ecore#/"/>
 </genmodel:GenModel>

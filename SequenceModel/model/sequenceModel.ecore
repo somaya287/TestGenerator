@@ -4,12 +4,12 @@
   <eClassifiers xsi:type="ecore:EClass" name="SequenceDiagram">
     <eStructuralFeatures xsi:type="ecore:EReference" name="sequence" upperBound="-1"
         eType="#//Sequence" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="lifeline" upperBound="-1"
-        eType="#//Lifeline" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="lifeline" lowerBound="1"
+        upperBound="-1" eType="#//Lifeline" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Lifeline">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Actor" eSuperTypes="#//Lifeline"/>
   <eClassifiers xsi:type="ecore:EClass" name="internObject" eSuperTypes="#//Lifeline"/>
@@ -17,36 +17,35 @@
   <eClassifiers xsi:type="ecore:EClass" name="message" eSuperTypes="#//Sequence">
     <eStructuralFeatures xsi:type="ecore:EReference" name="operation" eType="#//Operation"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="soure" lowerBound="1" eType="#//Lifeline"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="Destination" lowerBound="1"
-        eType="#//Lifeline"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="src" lowerBound="1" eType="#//Lifeline"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dest" lowerBound="1" eType="#//Lifeline"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="OperationMessage" eSuperTypes="#//message"/>
   <eClassifiers xsi:type="ecore:EClass" name="SignalMessage" eSuperTypes="#//message"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ReplyMessage" eSuperTypes="#//message"/>
   <eClassifiers xsi:type="ecore:EClass" name="Combinedfragement" eSuperTypes="#//Sequence">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="interactionoperand" lowerBound="1"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="interactionOperand" lowerBound="1"
         upperBound="-1" eType="#//InteractionOperand" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Guard" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
         unsettable="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="loop" eSuperTypes="#//Combinedfragement"/>
   <eClassifiers xsi:type="ecore:EClass" name="Alt" eSuperTypes="#//Combinedfragement"/>
   <eClassifiers xsi:type="ecore:EClass" name="Opt" eSuperTypes="#//Combinedfragement"/>
-  <eClassifiers xsi:type="ecore:EClass" name="ReplyMessage" eSuperTypes="#//message"/>
   <eClassifiers xsi:type="ecore:EClass" name="Operation">
     <eStructuralFeatures xsi:type="ecore:EReference" name="parametre" lowerBound="1"
-        upperBound="-1" eType="#//parametre" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="NameVariable" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+        upperBound="-1" eType="#//Parametre" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="nameVariable" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="returnType" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="parametre">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBigDecimal"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Parametre">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="InteractionOperand">
     <eStructuralFeatures xsi:type="ecore:EReference" name="sequence" upperBound="-1"
         eType="#//Sequence" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Guard" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="guard" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
 </ecore:EPackage>
