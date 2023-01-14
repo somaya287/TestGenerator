@@ -20,6 +20,13 @@ context TestFile {
 	}
 }
 
+context TestClass {
+	constraint className {
+		check : self.name = self.testFile.name
+		message : "The class should have the same name as the file"
+	}
+}
+
 context Method {
 	constraint hasName {
 		check : self.name.size() > 0 

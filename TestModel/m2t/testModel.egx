@@ -1,0 +1,9 @@
+pre {
+	var package = TestPackage.name;
+}
+
+rule TestFile2File transform f : TestFile {
+	template : "testFile2File.egl"	
+	parameters : Map{"package" = package}
+	target : "src/test/java/" + package + "/" + f.name + ".java" 
+}
