@@ -28,6 +28,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="condition" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="src" lowerBound="1" eType="#//Activity"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="dest" lowerBound="1" eType="#//Activity"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Join" eSuperTypes="#//Activity">
     <eStructuralFeatures xsi:type="ecore:EReference" name="close" lowerBound="1" eType="#//Fork"
@@ -52,8 +53,9 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Object">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="signals" lowerBound="1"
-        upperBound="-1" eType="#//Signal"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="sentSignal" eType="#//ReceiveSignal"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="receivedSignal" eType="#//SendSignal"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Signal" abstract="true" eSuperTypes="#//Activity">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
