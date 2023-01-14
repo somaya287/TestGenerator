@@ -1,0 +1,41 @@
+package [%=package%];
+
+[%for (staticMethod in f.importBlock.staticMethods) {%]
+import [%=staticMethod%]
+[%}%]
+
+[%for (class in f.importBlock.classes) {%]
+import [%=class%]
+[%}%]
+
+@DisplayName("[%=f.testClass.displayName%]")
+public class [%=f.testClass.name%] {
+	[%for (method in f.testClass.methods) {%]
+		@DisplayName("[%=method.displayName%]")
+		[%if ( method.isKindOf(AfterAllMethod) || method.isKindOf(BeforeAllMethod) ||
+			 method.isKindOf(BeforeEachMethod) || method.isKindOf(AfterEachMethod) ) {%]
+			[%if (method.isKindOf(AfterAllMethod)) {%]
+			@AfterAll	
+			[%}%]
+			[%if (method.isKindOf(BeforeAllMethod)) {%]
+			@BeforeAll		
+			[%}%]
+			[%if (method.isKindOf(BeforeEachMethod)) {%]
+			@BeforeEach		
+			[%}%]
+			[%if (method.isKindOf(AfterEachMethod)) {%]
+			@AfterEach		
+			[%}%]
+			public void [%=method.name%] {
+				[%for (instruction in method.instructions) {%]
+					[%=instruction%]
+				[%}%]
+			}
+		[%}%]
+		[%if ( method.isKindOf(TestMethod) ) {%]
+			@test
+			
+		[%}%]
+		
+	[%}%]
+}
