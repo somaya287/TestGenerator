@@ -3,7 +3,7 @@
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="Sequence" nsURI="Sequence" nsPrefix="Sequence">
   <eClassifiers xsi:type="ecore:EClass" name="SequenceDiagram">
     <eStructuralFeatures xsi:type="ecore:EReference" name="sequence" upperBound="-1"
-        eType="#//Sequence" containment="true"/>
+        eType="#//Sequence" containment="true" eOpposite="#//Sequence/sequenceDiagram"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="lifeline" lowerBound="1"
         upperBound="-1" eType="#//Lifeline" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -13,7 +13,10 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Actor" eSuperTypes="#//Lifeline"/>
   <eClassifiers xsi:type="ecore:EClass" name="internObject" eSuperTypes="#//Lifeline"/>
-  <eClassifiers xsi:type="ecore:EClass" name="Sequence"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Sequence">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="sequenceDiagram" lowerBound="1"
+        eType="#//SequenceDiagram" eOpposite="#//SequenceDiagram/sequence"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="message" eSuperTypes="#//Sequence">
     <eStructuralFeatures xsi:type="ecore:EReference" name="operation" eType="#//Operation"
         containment="true"/>
@@ -45,7 +48,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="InteractionOperand">
     <eStructuralFeatures xsi:type="ecore:EReference" name="sequence" upperBound="-1"
-        eType="#//Sequence" containment="true"/>
+        eType="#//Sequence"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="guard" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
 </ecore:EPackage>
