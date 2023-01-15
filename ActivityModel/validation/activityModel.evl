@@ -1,0 +1,179 @@
+context ActivityDiagram {
+
+	constraint NameIsDefined {
+		check: self.name.isDefined()
+		message: "The activity class's name should be definded"
+	}
+	
+	constraint NameIsWellFormed {
+		check: self.name.matches("[a-z0-9_A-Z ]*$")
+		message: "The activity diagram's name is not well formed"
+	}
+	
+	constraint InitialActivityIsDefined {
+		check: self.initial.isDefined()
+		message: "The activity diagram should have an initial activity"
+	}
+
+	critique InitialActivityIsAnActivity {
+		
+		guard: self.satisfies("InitialActivityIsDefined")
+		check: self.activities.includes(self.initial)
+		message: "The initial activity should be included in the activity list of the sequence diagram"
+		
+		fix {
+			title: "add initial activity to the list of activities"
+			do  {
+				self.activities.add(self.initial);
+			}
+		}
+	}
+	
+}
+
+context Start {
+
+	constraint AtLeastOneOutgoingEdge {
+		check: self.outgoingEdges.size() > 0
+		message: "At least one outgoing edge should exist for the initial activity"
+	}
+	
+	constraint NoIncomingEdges {
+		check: self.incomingEdges.size() == 0
+		message: "There should be no incoming edges for the initial activity"
+	}
+	
+}
+
+context End {
+
+	constraint AtLeastOneIncomingEdge {
+		check: self.incomingEdges.size() > 0
+		message: "At least one incoming edge should exist for the end activity"
+	}
+	
+	constraint NoOutgoingEdges {
+		check: self.outgoingEdges.size() == 0
+		message: "There should be no outgoing edges for the initial activity"
+	}	
+}
+
+context Decision {
+
+	constraint AtLeastTwoOutgoingEdge {
+		check: self.outgoingEdges.size() >= 2
+		message: "At least two outgoing edges should exist for a decision activity"
+	}
+	
+	constraint OneIncomingEdges {
+		check: self.incomingEdges.size() == 1
+		message: "There should be one incoming edge for a decision activity"
+	}
+}
+
+context Merge {
+
+	constraint AtLeastTwoIncomingEdge {
+		check: self.incomingEdges.size() >= 2
+		message: "At least two incoming edges should exist for a merge activity"
+	}
+	
+	constraint OneOutgoingEdges {
+		check: self.outGoingEdges.size() == 1
+		message: "There should be one outgoing edge for a merge activity"
+	}
+	
+	constraint OpenDecisionDefined {
+		check: self.open.isDefined()
+		message: "The decision associated with the merge should be defined"
+	}
+	
+	constraint SameNumberOfEdgesInOpenAndClose {
+		guard: self.satisfies("OpenDecisionDefined")
+		check: self.incomingEdges.size() == self.open.outgoingEdges.size()
+		message: "There should be the same number of edges on the decision and its closing merge"
+	}
+	
+	critique MergeNotDefinedForTheDecision {
+		guard: self.satisfies("OpenDecisionDefined")
+		check: self.open.close.isDefined()
+		message: "The merge should be known by the associated decision"
+		fix {
+			title: "Define the close field of the decision"
+			do {
+				self.open.close = self;
+			}
+		}
+	}
+}
+
+context Fork {
+
+	constraint AtLeastTwoOutgoingEdge {
+		check: self.outgoingEdges.size() >= 2
+		message: "At least two outgoing edges should exist for a fork activity"
+	}
+	
+	constraint OneIncomingEdges {
+		check: self.incomingEdges.size() == 1
+		message: "There should be one incoming edge for a fork activity"
+	}
+}
+
+context Join {
+
+	constraint AtLeastTwoIncomingEdge {
+		check: self.incomingEdges.size() >= 2
+		message: "At least two incoming edges should exist for a join activity"
+	}
+	
+	constraint OneOutgoingEdges {
+		check: self.outGoingEdges.size() == 1
+		message: "There should be one outgoing edge for a join activity"
+	}
+	
+	constraint OpenForkDefined {
+		check: self.open.isDefined()
+		message: "The fork associated with the join should be defined"
+	}
+	
+	constraint SameNumberOfEdgesInOpenAndClose {
+		guard: self.satisfies("OpenForkDefined")
+		check: self.incomingEdges.size() == self.open.outgoingEdges.size()
+		message: "There should be the same number of edges on the fork and its closing join"
+	}
+	
+	critique JoinNotDefinedForFork {
+		guard: self.satisfies("OpenForkDefined")
+		check: self.open.close.isDefined()
+		message: "The join should be known by the associated fork"
+		fix {
+			title: "Define the close field of the fork"
+			do {
+				self.open.close = self;
+			}
+		}
+	}
+}
+
+
+context Edge {
+	
+	constraint SrcIsDefined {
+		check: self.src.isDefined()
+		message: "The source activity should be defined"
+	}
+	
+	constraint DestisDefined {
+		check: self.des.isDefined()
+		message: "The destination actiity should be defined"
+	}
+	
+	constraint SrcIsNotDest {
+		check: self.dest != self.src
+		message: "The same activity cannot be the source and destination of an edge"
+	}
+	
+}
+	
+
