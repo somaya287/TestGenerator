@@ -1,1 +1,10 @@
 /bin/
+
+*.editor/*
+*.edit/*
+*.tests/*
+*/META-INF/*
+*/build.properties
+*/bin
+*/plugin.xml
+*/plugin.properties

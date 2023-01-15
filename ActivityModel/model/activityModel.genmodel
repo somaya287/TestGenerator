@@ -1,11 +1,57 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/ActivityModel/src-gen" creationIcons="false" editDirectory="/ActivityModel.edit/src-gen"
-    editorDirectory="/ActivityModel.editor/src-gen" modelPluginID="ActivityModel"
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/ActivityModel/src" modelPluginID="ActivityModel"
     modelName="ActivityModel" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
-    codeFormatting="true" importerID="org.eclipse.emf.importer.ecore" complianceLevel="5.0"
-    copyrightFields="false" operationReflection="true" importOrganizing="true">
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="5.0" copyrightFields="false"
+    operationReflection="true" importOrganizing="true">
   <foreignModel>activityModel.ecore</foreignModel>
-  <testsDirectory xsi:nil="true"/>
-  <genPackages prefix="ActivityModel" disposableProviderFactory="true" ecorePackage="activityModel.ecore#/"/>
+  <genPackages prefix="ActivityModel" disposableProviderFactory="true" ecorePackage="activityModel.ecore#/">
+    <genClasses ecoreClass="activityModel.ecore#//Start">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference activityModel.ecore#//Start/activityDiagramToStart"/>
+    </genClasses>
+    <genClasses ecoreClass="activityModel.ecore#//ActivityDiagram">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute activityModel.ecore#//ActivityDiagram/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference activityModel.ecore#//ActivityDiagram/activities"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference activityModel.ecore#//ActivityDiagram/initial"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="activityModel.ecore#//Activity">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute activityModel.ecore#//Activity/id"/>
+      <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference activityModel.ecore#//Activity/activityDiagram"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference activityModel.ecore#//Activity/incomingEdges"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference activityModel.ecore#//Activity/outgoingEdges"/>
+    </genClasses>
+    <genClasses ecoreClass="activityModel.ecore#//Edge">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute activityModel.ecore#//Edge/id"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute activityModel.ecore#//Edge/condition"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference activityModel.ecore#//Edge/src"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference activityModel.ecore#//Edge/dest"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute activityModel.ecore#//Edge/name"/>
+    </genClasses>
+    <genClasses ecoreClass="activityModel.ecore#//Join">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference activityModel.ecore#//Join/close"/>
+    </genClasses>
+    <genClasses ecoreClass="activityModel.ecore#//Fork">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference activityModel.ecore#//Fork/open"/>
+    </genClasses>
+    <genClasses ecoreClass="activityModel.ecore#//End"/>
+    <genClasses ecoreClass="activityModel.ecore#//Decision">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference activityModel.ecore#//Decision/close"/>
+    </genClasses>
+    <genClasses ecoreClass="activityModel.ecore#//Merge">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference activityModel.ecore#//Merge/open"/>
+    </genClasses>
+    <genClasses ecoreClass="activityModel.ecore#//SendSignal"/>
+    <genClasses ecoreClass="activityModel.ecore#//ReceiveSignal"/>
+    <genClasses ecoreClass="activityModel.ecore#//Action">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute activityModel.ecore#//Action/name"/>
+    </genClasses>
+    <genClasses ecoreClass="activityModel.ecore#//Object">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute activityModel.ecore#//Object/name"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference activityModel.ecore#//Object/signals"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="activityModel.ecore#//Signal">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute activityModel.ecore#//Signal/name"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference activityModel.ecore#//Signal/objects"/>
+    </genClasses>
+  </genPackages>
 </genmodel:GenModel>
