@@ -3,19 +3,21 @@
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="testMetaModel" nsURI="testMetaModel" nsPrefix="testMetaModel">
   <eClassifiers xsi:type="ecore:EClass" name="TestPackage">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="parentPackage" eType="#//TestPackage"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="parentPackage" eType="#//TestPackage"
+        eOpposite="#//TestPackage/childrenPackage"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="childrenPackage" upperBound="-1"
-        eType="#//TestPackage" containment="true"/>
+        eType="#//TestPackage" containment="true" eOpposite="#//TestPackage/parentPackage"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="testFiles" upperBound="-1"
-        eType="#//TestFile" containment="true"/>
+        eType="#//TestFile" containment="true" eOpposite="#//TestFile/testPackage"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="TestFile">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="testPackage" eType="#//TestPackage"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="testPackage" eType="#//TestPackage"
+        eOpposite="#//TestPackage/testFiles"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="importBlock" eType="#//ImportBlock"
-        containment="true"/>
+        containment="true" eOpposite="#//ImportBlock/testFile"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="testClass" lowerBound="1"
-        eType="#//TestClass" containment="true"/>
+        eType="#//TestClass" containment="true" eOpposite="#//TestClass/testFile"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ImportBlock">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="staticMethods" upperBound="-1"
@@ -23,21 +25,21 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="classes" upperBound="-1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="testFile" lowerBound="1"
-        eType="#//TestFile"/>
+        eType="#//TestFile" eOpposite="#//TestFile/importBlock"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="TestClass">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="displayName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="testFile" lowerBound="1"
-        eType="#//TestFile"/>
+        eType="#//TestFile" eOpposite="#//TestFile/testClass"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="methods" upperBound="-1"
-        eType="#//Method" containment="true"/>
+        eType="#//Method" containment="true" eOpposite="#//Method/testClass"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Method" abstract="true">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="displayName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="testClass" lowerBound="1"
-        eType="#//TestClass"/>
+        eType="#//TestClass" eOpposite="#//TestClass/methods"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="AfterAllMethod" eSuperTypes="#//Method">
     <eStructuralFeatures xsi:type="ecore:EReference" name="instructions" upperBound="-1"
@@ -59,11 +61,11 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="testAnnotation" lowerBound="1"
         eType="#//TestAnnotation" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="givenBlock" lowerBound="1"
-        eType="#//GivenBlock" containment="true"/>
+        eType="#//GivenBlock" containment="true" eOpposite="#//GivenBlock/testMethod"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="whenBlock" lowerBound="1"
-        eType="#//WhenBlock" containment="true"/>
+        eType="#//WhenBlock" containment="true" eOpposite="#//WhenBlock/testMethod"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="thenBlock" lowerBound="1"
-        eType="#//ThenBlock" containment="true"/>
+        eType="#//ThenBlock" containment="true" eOpposite="#//ThenBlock/testMethod"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Instruction" abstract="true"/>
   <eClassifiers xsi:type="ecore:EClass" name="TestAnnotation">
@@ -71,19 +73,19 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="WhenBlock">
     <eStructuralFeatures xsi:type="ecore:EReference" name="testMethod" lowerBound="1"
-        eType="#//TestMethod"/>
+        eType="#//TestMethod" eOpposite="#//TestMethod/whenBlock"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="methodCallInstruction"
         lowerBound="1" eType="#//MethodCallInstruction" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ThenBlock">
     <eStructuralFeatures xsi:type="ecore:EReference" name="testMethod" lowerBound="1"
-        eType="#//TestMethod"/>
+        eType="#//TestMethod" eOpposite="#//TestMethod/thenBlock"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="assertInstruction" lowerBound="1"
         upperBound="-1" eType="#//AssertInstruction" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="GivenBlock">
     <eStructuralFeatures xsi:type="ecore:EReference" name="testMethod" lowerBound="1"
-        eType="#//TestMethod"/>
+        eType="#//TestMethod" eOpposite="#//TestMethod/givenBlock"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="instruction" upperBound="-1"
         eType="#//Instruction" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="mockInstruction" upperBound="-1"
@@ -91,6 +93,8 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="AssertInstruction" eSuperTypes="#//Instruction">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="assertionType" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="parameters" lowerBound="1"
+        upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="MethodCallInstruction" eSuperTypes="#//Instruction">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="methodName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>

@@ -70,6 +70,7 @@
     </genClasses>
     <genClasses ecoreClass="testModel.ecore#//AssertInstruction">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute testModel.ecore#//AssertInstruction/assertionType"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute testModel.ecore#//AssertInstruction/parameters"/>
     </genClasses>
     <genClasses ecoreClass="testModel.ecore#//MethodCallInstruction">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute testModel.ecore#//MethodCallInstruction/methodName"/>

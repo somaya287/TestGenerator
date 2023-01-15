@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:description="http://www.eclipse.org/sirius/description/1.1.0" xmlns:description_1="http://www.eclipse.org/sirius/diagram/description/1.1.0" xmlns:diagram="http://www.eclipse.org/sirius/diagram/1.1.0" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.3/notation" xmlns:style="http://www.eclipse.org/sirius/diagram/description/style/1.1.0" xmlns:viewpoint="http://www.eclipse.org/sirius/1.1.0" xsi:schemaLocation="http://www.eclipse.org/sirius/description/1.1.0 http://www.eclipse.org/sirius/1.1.0#//description http://www.eclipse.org/sirius/diagram/description/1.1.0 http://www.eclipse.org/sirius/diagram/1.1.0#//description http://www.eclipse.org/sirius/diagram/description/style/1.1.0 http://www.eclipse.org/sirius/diagram/1.1.0#//description/style">
   <viewpoint:DAnalysis uid="_yNbYAJOqEe2US9u6DpG8JQ" selectedViews="_y-LfgJOqEe2US9u6DpG8JQ" version="15.0.0.202209061200">
-    <semanticResources>activityModel.ecore</semanticResources>
     <semanticResources>activityModel.genmodel</semanticResources>
+    <semanticResources>activityMetaModel.ecore</semanticResources>
+    <semanticResources>activityModel.ecore</semanticResources>
     <ownedViews xmi:type="viewpoint:DView" uid="_y-LfgJOqEe2US9u6DpG8JQ">
       <viewpoint xmi:type="description:Viewpoint" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']"/>
       <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" uid="_zDGbwJOqEe2US9u6DpG8JQ" name="activityModel" repPath="#_zBIF0JOqEe2US9u6DpG8JQ" changeId="c4caa75a-210b-4f5a-9097-ae4bb4dc58c4">
