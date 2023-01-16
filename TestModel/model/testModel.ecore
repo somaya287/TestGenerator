@@ -20,12 +20,12 @@
         eType="#//TestClass" containment="true" eOpposite="#//TestClass/testFile"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ImportBlock">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="staticMethods" upperBound="-1"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="classes" upperBound="-1"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="testFile" lowerBound="1"
         eType="#//TestFile" eOpposite="#//TestFile/importBlock"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="staticMethods" upperBound="-1"
+        eType="#//ImportedMethod" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="classes" upperBound="-1"
+        eType="#//ImportedClass" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="TestClass">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -43,19 +43,19 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="AfterAllMethod" eSuperTypes="#//Method">
     <eStructuralFeatures xsi:type="ecore:EReference" name="instructions" upperBound="-1"
-        eType="#//Instruction" containment="true"/>
+        eType="#//RegularInstruction" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="BeforeAllMethod" eSuperTypes="#//Method">
     <eStructuralFeatures xsi:type="ecore:EReference" name="instructions" upperBound="-1"
-        eType="#//Instruction" containment="true"/>
+        eType="#//RegularInstruction" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="AfterEachMethod" eSuperTypes="#//Method">
     <eStructuralFeatures xsi:type="ecore:EReference" name="instructions" upperBound="-1"
-        eType="#//Instruction" containment="true"/>
+        eType="#//RegularInstruction" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="BeforeEachMethod" eSuperTypes="#//Method">
     <eStructuralFeatures xsi:type="ecore:EReference" name="instructions" upperBound="-1"
-        eType="#//Instruction" containment="true"/>
+        eType="#//RegularInstruction" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="TestMethod" eSuperTypes="#//Method">
     <eStructuralFeatures xsi:type="ecore:EReference" name="testAnnotation" lowerBound="1"
@@ -74,27 +74,34 @@
   <eClassifiers xsi:type="ecore:EClass" name="WhenBlock">
     <eStructuralFeatures xsi:type="ecore:EReference" name="testMethod" lowerBound="1"
         eType="#//TestMethod" eOpposite="#//TestMethod/whenBlock"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="methodCallInstruction"
-        lowerBound="1" eType="#//MethodCallInstruction" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="methodCallInstructions"
+        lowerBound="1" upperBound="-1" eType="#//MethodCallInstruction" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="methodMockInstructions"
+        lowerBound="1" upperBound="-1" eType="#//MethodMockInstruction" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ThenBlock">
     <eStructuralFeatures xsi:type="ecore:EReference" name="testMethod" lowerBound="1"
         eType="#//TestMethod" eOpposite="#//TestMethod/thenBlock"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="assertInstruction" lowerBound="1"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="assertInstructions" lowerBound="1"
         upperBound="-1" eType="#//AssertInstruction" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="GivenBlock">
     <eStructuralFeatures xsi:type="ecore:EReference" name="testMethod" lowerBound="1"
         eType="#//TestMethod" eOpposite="#//TestMethod/givenBlock"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="instruction" upperBound="-1"
-        eType="#//Instruction" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="mockInstruction" upperBound="-1"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="regularInstructions" upperBound="-1"
+        eType="#//RegularInstruction" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="mockInstructions" upperBound="-1"
         eType="#//MockInstruction" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="RegularInstruction" eSuperTypes="#//Instruction">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="do" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="AssertInstruction" eSuperTypes="#//Instruction">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="assertionType" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="parameters" lowerBound="1"
-        upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="expected" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="toCompare" lowerBound="1"
+        eType="#//MethodCallInstruction"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="MethodCallInstruction" eSuperTypes="#//Instruction">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="methodName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -102,12 +109,34 @@
         eType="#//Variable" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="returnValue" lowerBound="1"
         eType="#//Variable" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="className" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="MockInstruction" eSuperTypes="#//Instruction">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="className" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="methods" upperBound="-1"
+        eType="#//MethodMockInstruction" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Variable">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Type" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ImportedClass">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="source" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ImportedMethod">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="source" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MethodMockInstruction" eSuperTypes="#//Instruction">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="methodName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="parameters" upperBound="-1"
+        eType="#//Variable" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="returnValue" lowerBound="1"
+        eType="#//Variable" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="mockedClass" lowerBound="1"
+        eType="#//MockInstruction"/>
   </eClassifiers>
 </ecore:EPackage>

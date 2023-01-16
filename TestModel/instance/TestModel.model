@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="ASCII"?>
+<testMetaModel:TestPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:testMetaModel="testMetaModel" xmi:id="_IOueIJUuEe2Go_EGdtzjHg" name="somaya">
+  <testFiles xmi:id="_L-IvIJUuEe2Go_EGdtzjHg" name="Maymoun">
+    <testClass xmi:id="_NqJlAJUuEe2Go_EGdtzjHg" name="Maymoun">
+      <methods xsi:type="testMetaModel:AfterAllMethod" xmi:id="_OxXEsJUuEe2Go_EGdtzjHg" name="tearDown" displayName="smth">
+        <instructions xmi:id="_RdEdAJUuEe2Go_EGdtzjHg" do="sout(&quot;bjhqs&quot;);"/>
+      </methods>
+    </testClass>
+  </testFiles>
+</testMetaModel:TestPackage>

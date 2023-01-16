@@ -1,0 +1,98 @@
+package [%=package%];
+
+[%if (f.importBlock.isDefined()){%]
+	[%if (f.importBlock.staticMethods.isDefined()){%]
+		[%for (staticMethod in f.importBlock.staticMethods) {%]
+import static [%=staticMethod.name%] from [%=staticMethod.source%];
+		[%}%]
+	[%}%]
+	
+	[%if (f.importBlock.classes.isDefined()) {%]
+		[%for (class in f.importBlock.classes) {%]
+import [%=class.name%] from [%=class.source%];
+		[%}%]
+	[% } %]
+[%}%]
+
+[%if (f.testClass.displayName.isDefined()) {%]
+@DisplayName("[%=f.testClass.displayName%]")
+[%}%]
+public class [%=f.testClass.name%] {
+	[%if (f.testClass.methods.isDefined()) {%]
+		[%for (method in f.testClass.methods) {%]
+			[%if ( method.isKindOf(AfterAllMethod) or method.isKindOf(BeforeAllMethod) or
+				 method.isKindOf(BeforeEachMethod) or method.isKindOf(AfterEachMethod) ) {%]
+				[%if (method.isKindOf(AfterAllMethod)) {%]
+	@AfterAll	
+				[%}%]
+				[%if (method.isKindOf(BeforeAllMethod)) {%]
+	@BeforeAll		
+				[%}%]
+				[%if (method.isKindOf(BeforeEachMethod)) {%]
+	@BeforeEach		
+				[%}%]
+				[%if (method.isKindOf(AfterEachMethod)) {%]
+	@AfterEach		
+				[%}%]
+	public void [%=method.name%]() {
+				[%for (instruction in method.instructions) {%]
+		[%=instruction.do%]
+				[%}%]
+	}
+			[%}%]
+			[%if ( method.isKindOf(TestMethod) ) {%]
+				[%if ( method.testAnnotation.expectedException.isDefined()) {%]
+	@test(expected = [%=method.testAnnotation.expectedException%].class)
+				[%}%]
+				[%else {%]
+	@test
+				[%}%]	
+	public void [%=method.name%]() {
+	
+		// ***** given :
+				[%if ( method.givenBlock.isDefined()) {%]
+					[% for (inst in method.givenBlock.mockInsructions) {%]
+		[%=inst.className%] [%=inst.className.ftlc()%]; 
+					[%}%]
+					
+					[% for (inst in method.givenBlock.mockInsructions) {%]
+		[%=inst.className.ftlc()%] = Mockito.mock([%=inst.className%].class);
+					[%}%]
+					[% for (inst in method.givenBlock.regularInstructions) {%]
+		[%=inst%]
+					[%}%]
+					[%if ( method.whenBlock.isDefined()) {%]
+						[% for (inst in method.whenBlock.methodCallInstruction) {%]
+							[%if (inst.className.isDefined()) {%]
+		[%=inst.className%] [%=inst.className.ftlc()%] = new [%=inst.className%]();
+							[%}%]
+						[%}%]
+					[%}%]	
+				[%}%]
+		// ***** when :
+				[%if ( method.whenBlock.isDefined()) {%]
+					[% for (inst in method.whenBlock.methodMockInstructions) {%]
+		when([%=inst.mockedClass.className.ftlc()%].[%=inst.methodName%]([%=inst.parameters.collect(Variable : v | v.name).concat(", ")%]).thenReturn([%=inst.returnValue.name%])
+					[%}%]
+					
+					[% for (inst in method.whenBlock.methodCallInstructions) {%]
+		[%=inst.returnValue.type%] [%=inst.returnValue.name%] = [%=inst.className.ftlc()%].[%=inst.methodName%]([%=inst.parameters.collect(Variable : v | v.name).concat(", ")%]);
+					[%}%]
+				[%}%]
+				
+		// ***** Then :
+				[%if ( method.thenBlock.isDefined()) {%]
+					[% for (inst in method.thenBlock.assertInstructions) {%]
+						[%if (Set{"assertTrue", "assertNull", "assertFalse", "assertNotNull"}.includes(inst.assertionType)) {%]
+		[%=inst.assertionType%]([%=inst.toCompare.returnValue.name%]);				
+						[%}%]
+						[% else {%]
+		[%=inst.assertionType%]([%=inst.expected%],[%=inst.toCompare.returnValue.name%]);				
+						[%}%]
+					[%}%]
+				[%}%]
+	}
+			[%}%]
+		[%}%]
+	[%}%]
+}

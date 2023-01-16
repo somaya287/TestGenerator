@@ -27,11 +27,7 @@ context TestClass {
 	}
 }
 
-context Method {
-	constraint hasName {
-		check : self.name.size() > 0 
-		message : "the method name shouldn't be null"
-	}
+context TestMethod {
 	constraint hasValidName { 
 		check : self.name.matches("test[A-Z][A-Za-z0-9_]*$")
 		message : "A method name can contain only letters, numbers, and underscore. It should start with test followed by an uppercase letter"
@@ -54,4 +50,36 @@ context AssertInstruction {
 	}
 }
 
+context ImportedClass {
+	constraint hasName {
+		check : self.name.size() > 0
+		message : "the class name shouldn't be null"
+	}
+	constraint hasValidName { 
+		check : self.name.matches("^[A-Z][a-zA-Z0-9]*$")
+		message : "A class name can contain only letters, numbers. It should start with an uppercase letter"
+	}
+}
+
+context Method {
+	constraint hasName {
+		check : self.name.size() > 0 
+		message : "the method name shouldn't be null"
+	}
+	constraint hasValidName { 
+		check : self.name.matches("[a-z][A-Za-z0-9_]*$")
+		message : "A method name can contain only letters, numbers, and underscore. It should start with a lowercase letter"
+	}
+}
+
+context ImportedMethod {
+	constraint hasName {
+		check : self.name.size() > 0 
+		message : "the method name shouldn't be null"
+	}
+	constraint hasValidName { 
+		check : self.name.matches("[a-z][A-Za-z0-9_]*$")
+		message : "A method name can contain only letters, numbers, and underscore. It should start with a lowercase letter"
+	}
+}
 
