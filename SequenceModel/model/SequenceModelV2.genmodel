@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/SequenceModel/src" modelPluginID="SequenceModel"
+    modelName="SequenceModelV2" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="5.0" copyrightFields="false"
+    operationReflection="true" importOrganizing="true">
+  <foreignModel>SequenceModelV2.ecore</foreignModel>
+  <genPackages prefix="SequenceV2" disposableProviderFactory="true" ecorePackage="SequenceModelV2.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="SequenceModelV2.ecore#//OperatorKind">
+      <genEnumLiterals ecoreEnumLiteral="SequenceModelV2.ecore#//OperatorKind/opt"/>
+      <genEnumLiterals ecoreEnumLiteral="SequenceModelV2.ecore#//OperatorKind/alt"/>
+      <genEnumLiterals ecoreEnumLiteral="SequenceModelV2.ecore#//OperatorKind/loop"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="SequenceModelV2.ecore#//MessageKind">
+      <genEnumLiterals ecoreEnumLiteral="SequenceModelV2.ecore#//MessageKind/operation"/>
+      <genEnumLiterals ecoreEnumLiteral="SequenceModelV2.ecore#//MessageKind/signal"/>
+      <genEnumLiterals ecoreEnumLiteral="SequenceModelV2.ecore#//MessageKind/reply"/>
+    </genEnums>
+    <genClasses ecoreClass="SequenceModelV2.ecore#//Message">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SequenceModelV2.ecore#//Message/operation"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference SequenceModelV2.ecore#//Message/target"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference SequenceModelV2.ecore#//Message/source"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SequenceModelV2.ecore#//Message/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SequenceModelV2.ecore#//Message/type"/>
+    </genClasses>
+    <genClasses ecoreClass="SequenceModelV2.ecore#//SequenceDiagram">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SequenceModelV2.ecore#//SequenceDiagram/lifeLines"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SequenceModelV2.ecore#//SequenceDiagram/fragments"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SequenceModelV2.ecore#//SequenceDiagram/name"/>
+    </genClasses>
+    <genClasses ecoreClass="SequenceModelV2.ecore#//LifeLine">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SequenceModelV2.ecore#//LifeLine/abstractobject"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SequenceModelV2.ecore#//LifeLine/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SequenceModelV2.ecore#//LifeLine/start"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="SequenceModelV2.ecore#//AbstractObject">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SequenceModelV2.ecore#//AbstractObject/name"/>
+    </genClasses>
+    <genClasses ecoreClass="SequenceModelV2.ecore#//Actor"/>
+    <genClasses ecoreClass="SequenceModelV2.ecore#//Object"/>
+    <genClasses ecoreClass="SequenceModelV2.ecore#//Operation">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SequenceModelV2.ecore#//Operation/param"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SequenceModelV2.ecore#//Operation/returnVariable"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SequenceModelV2.ecore#//Operation/returnType"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SequenceModelV2.ecore#//Operation/guard"/>
+    </genClasses>
+    <genClasses ecoreClass="SequenceModelV2.ecore#//Param">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SequenceModelV2.ecore#//Param/argName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SequenceModelV2.ecore#//Param/argType"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="SequenceModelV2.ecore#//InteractionFragment"/>
+    <genClasses ecoreClass="SequenceModelV2.ecore#//CombinedFragment">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SequenceModelV2.ecore#//CombinedFragment/operands"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SequenceModelV2.ecore#//CombinedFragment/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SequenceModelV2.ecore#//CombinedFragment/interactionOperator"/>
+    </genClasses>
+    <genClasses ecoreClass="SequenceModelV2.ecore#//InteractionOperand">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SequenceModelV2.ecore#//InteractionOperand/fragmentOperands"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SequenceModelV2.ecore#//InteractionOperand/guard"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>
