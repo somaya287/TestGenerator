@@ -83,3 +83,13 @@ context ImportedMethod {
 	}
 }
 
+context Variable {
+	constraint hasName {
+		check : self.name.size() > 0 
+		message : "the variable name shouldn't be null"
+	}
+	constraint hasValidName { 
+		check : self.name.matches("[A-Za-z0-9_]*$")
+		message : "A variable name can contain only letters, numbers, and underscore."
+	}
+}

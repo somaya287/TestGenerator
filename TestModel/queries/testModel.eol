@@ -1,9 +1,0 @@
-// test 
-var classes : Sequence;
-classes = TestClass.all;
-
-for (class in classes) {
-	var name : String;
-	name = class.name;
-	name.println();
-}
