@@ -10,7 +10,8 @@ rule LifeLineToClass
      transform SequnceDiagramLifeLine : SequenceModel!LifeLine
      to Class : AbstractTestModel!Class {
         Class.name = LifeLine.name
-        class.start = LifeLine.start
+        class.dependencies.addAll(SequenceModel!.Message.findAll[ it.source == LifeLine.name ].collect[ it.target ])
+
      }
 
 
@@ -19,8 +20,6 @@ rule MessageToMethod
      transform SequnceDiagramMessage : SequenceModel!Message
      to Method : AbstractTestModel!Method {
         Method.name = Message.name
-       // Method.source = Message.source
-       // Method.target = Message.target
         Method.variables.addAll(Message.Operation.params)
         //the return One
         Method.variable = Message.Operation.returnVariable
@@ -33,6 +32,5 @@ rule SequnceDiagramToTest
             Test.name = SequnceDiagram.lifeLines.findFirst[ it.start ].name.concat("Test_")
             //the lifeLine where start is true 
             Test.class.name = SequnceDiagram.lifeLines.findFirst[ it.start ].name
-            Test.class.classes.addAll(SequnceDiagram.lifeLines.findAll[ !it.start ].collect[ it.name ])
             
         }
