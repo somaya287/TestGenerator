@@ -32,6 +32,6 @@ rule SequnceDiagramToTest
         transform SequnceDiagram : SequenceModel!SequenceDiagram
         to Test : AbstractTestModel!Test {
             Test.name = SequnceDiagram.name
-            Test.classes.addAll(SequnceDiagram.lifelines)
-            Test.methods.addAll(SequnceDiagram.messages)
+            
+
         }
