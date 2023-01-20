@@ -1,14 +1,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap');
 
 .App {
+
+  background-size: cover;
   text-align: center;
-  font-family: orbitron;
-}
 
+  background-color: black;
+
+
+}
 .text{
-  color: #ffffff;
-}
+font-family: 'Orbitron', sans-serif;
+color:"#F8EF00"
 
+}
 .App-logo {
   height: 40vmin;
   pointer-events: none;
