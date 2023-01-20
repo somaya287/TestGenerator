@@ -1,0 +1,31 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap');
+</style>
+.App {
+
+  background-size: cover;
+  text-align: center;
+  background-color: black;
+
+
+}
+.text{
+font-family: 'Orbitron', sans-serif;
+position: absolute;
+width: 588px;
+height: 40px;
+left: 432px;
+top: 98px;
+
+/* Heading */
+
+font-weight: 700;
+font-size: 40px;
+line-height: 40px;
+/* identical to box height, or 100% */
+
+letter-spacing: 0.2em;
+text-transform: uppercase;
+
+color: #F8EF00;
+}
