@@ -3,6 +3,7 @@ rule ParmToVariable
      to Variable : AbstractTestModel!Variable {
         Variable.name = Parm.name
         Variable.type = Parm.type
+
      }
 
     
@@ -13,19 +14,19 @@ rule MessageToMethod
       guard Method.source.isDefined() && Method.target.isDefined()
         
         Method.name = Message.name
-        Method.variables.addAll(Message.Operation.params)
+        Method.variables.addAll(Message.Operation.params.collect[ it.equivalent() ])
         //the return One
-        Method.variable = Message.Operation.returnVariable
-        Method.parent.class.name = Message.source
-        Method.parent.class.methodes.add(Method)
+         Method.variable = Message.Operation.returnVariable
+      //   Method.parent.class.name = Message.source.name
+      //   Method.parent.class.methodes.add(Method)
      }
 
 rule LifeLineToClass
      transform SequnceDiagramLifeLine : SequenceModel!LifeLine
      to Class : AbstractTestModel!Class {
         Class.name = LifeLine.name
-        //class.dependencies.addAll(SequenceModel!.Message.findAll[ it.source == LifeLine.name ].collect[ it.target ])
-       // class.methodes.addAll(SequenceModel!.Message.findAll[ it.source == LifeLine.name ].collect[ it.Operation ])
+        class.dependencies.addAll(SequenceModel!.Message.findAll[ it.source == LifeLine.name ].collect[ it.target.equivalent() ])
+        class.methodes.addAll(SequenceModel!.Message.findAll[ it.source == LifeLine.name ].collect[ it.Message.equivalent() ])
 
      }
 
@@ -36,6 +37,6 @@ rule SequnceDiagramToTest
         to Test : AbstractTestModel!Test {
             Test.name = SequnceDiagram.lifeLines.findFirst[ it.start ].name.concat("Test_")
             //the lifeLine where start is true 
-            Test.class.name = SequnceDiagram.lifeLines.findFirst[ it.start ].name
+            Test.class = SequnceDiagram.lifeLines.findFirst[ it.start ].equivalent()
             
         }
