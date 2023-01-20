@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Tomorrow:wght@500&display=swap');
 .App {
 
   background-size: cover;
@@ -8,8 +9,8 @@
 
 }
 .text{
-font-family: 'Orbitron', sans-serif;
-color:"#F8EF00"
+  font-family: 'Tomorrow';
+  color:"#F8EF00"
 
 }
 .App-logo {
