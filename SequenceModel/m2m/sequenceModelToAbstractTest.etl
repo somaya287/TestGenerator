@@ -9,20 +9,23 @@ rule ParmToVariable
 rule MessageToMethod
      transform SequnceDiagramMessage : SequenceModel!Message
      to Method : AbstractTestModel!Method {
-        Method.name = Message.name
-        
 
+      guard Method.source.isDefined() && Method.target.isDefined()
+        
+        Method.name = Message.name
         Method.variables.addAll(Message.Operation.params)
         //the return One
         Method.variable = Message.Operation.returnVariable
+        Method.parent.class.name = Message.source
+        Method.parent.class.methodes.add(Method)
      }
 
 rule LifeLineToClass
      transform SequnceDiagramLifeLine : SequenceModel!LifeLine
      to Class : AbstractTestModel!Class {
         Class.name = LifeLine.name
-        class.dependencies.addAll(SequenceModel!.Message.findAll[ it.source == LifeLine.name ].collect[ it.target ])
-        class.methodes.addAll(SequenceModel!.Message.findAll[ it.source == LifeLine.name ].collect[ it.Operation ])
+        //class.dependencies.addAll(SequenceModel!.Message.findAll[ it.source == LifeLine.name ].collect[ it.target ])
+       // class.methodes.addAll(SequenceModel!.Message.findAll[ it.source == LifeLine.name ].collect[ it.Operation ])
 
      }
 
