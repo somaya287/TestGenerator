@@ -3,15 +3,21 @@ package [%=package%];
 [%if (f.importBlock.isDefined()){%]
 	[%if (f.importBlock.staticMethods.isDefined()){%]
 		[%for (staticMethod in f.importBlock.staticMethods) {%]
-import static [%=staticMethod.name%] from [%=staticMethod.source%];
+import static [%=staticMethod%];
 		[%}%]
 	[%}%]
 	
 	[%if (f.importBlock.classes.isDefined()) {%]
 		[%for (class in f.importBlock.classes) {%]
-import [%=class.name%] from [%=class.source%];
+import [%=class%];
 		[%}%]
 	[% } %]
+	
+	[%if (f.importBlock.dependencies.isDefined()) {%]
+		[%for (dep in f.importBlock.dependencies) {%]
+import [%=dep%] from /*insert your classe's package here*/;
+		[%}%]
+	[% } %]	
 [%}%]
 
 [%if (f.testClass.displayName.isDefined()) {%]
@@ -52,19 +58,19 @@ public class [%=f.testClass.name%] {
 		// ***** given :
 				[%if ( method.givenBlock.isDefined()) {%]
 					[% for (inst in method.givenBlock.mockInsructions) {%]
-		[%=inst.className%] [%=inst.className.ftlc()%]; 
+		[%=inst.class.name%] [%=inst.class.name.ftlc()%]; 
 					[%}%]
 					
 					[% for (inst in method.givenBlock.mockInsructions) {%]
-		[%=inst.className.ftlc()%] = Mockito.mock([%=inst.className%].class);
+		[%=inst.class.name.ftlc()%] = Mockito.mock([%=inst.class.name%].class);
 					[%}%]
 					[% for (inst in method.givenBlock.regularInstructions) {%]
 		[%=inst%]
 					[%}%]
 					[%if ( method.whenBlock.isDefined()) {%]
-						[% for (inst in method.whenBlock.methodCallInstruction) {%]
-							[%if (inst.className.isDefined()) {%]
-		[%=inst.className%] [%=inst.className.ftlc()%] = new [%=inst.className%]();
+						[% for (inst in method.whenBlock.methodCallInstructions) {%]
+							[%if (inst.class.name.isDefined()) {%] 
+		[%=inst.class.name%] [%=inst.class.name.ftlc()%] = new [%=inst.class.name%]([%=inst.class.dependencies.collect(dep | dep.name.ftlc()).concat(", ")%]);
 							[%}%]
 						[%}%]
 					[%}%]	
@@ -76,7 +82,7 @@ public class [%=f.testClass.name%] {
 					[%}%]
 					
 					[% for (inst in method.whenBlock.methodCallInstructions) {%]
-		[%=inst.returnValue.type%] [%=inst.returnValue.name%] = [%=inst.className.ftlc()%].[%=inst.methodName%]([%=inst.parameters.collect(Variable : v | v.name).concat(", ")%]);
+		[%=inst.returnValue.type%] [%=inst.returnValue.name%] = [%=inst.class.name.ftlc()%].[%=inst.methodName%]([%=inst.parameters.collect(Variable : v | v.name).concat(", ")%]);
 					[%}%]
 				[%}%]
 				
@@ -87,7 +93,7 @@ public class [%=f.testClass.name%] {
 		[%=inst.assertionType%]([%=inst.toCompare.returnValue.name%]);				
 						[%}%]
 						[% else {%]
-		[%=inst.assertionType%]([%=inst.expected%],[%=inst.toCompare.returnValue.name%]);				
+		[%=inst.assertionType%](/*[%=inst.expected%]*/,[%=inst.toCompare.returnValue.name%]);				
 						[%}%]
 					[%}%]
 				[%}%]
