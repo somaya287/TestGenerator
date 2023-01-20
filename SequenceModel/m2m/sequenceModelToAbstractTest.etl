@@ -10,12 +10,11 @@ rule LifeLineToClass
      transform SequnceDiagramLifeLine : SequenceModel!LifeLine
      to Class : AbstractTestModel!Class {
         Class.name = LifeLine.name
-        //if LifeLine.start ==true , then this class is to be Root of classes?
-
-
+        class.start = LifeLine.start
      }
 
 
+    
 rule MessageToMethod
      transform SequnceDiagramMessage : SequenceModel!Message
      to Method : AbstractTestModel!Method {
@@ -31,7 +30,9 @@ rule MessageToMethod
 rule SequnceDiagramToTest
         transform SequnceDiagram : SequenceModel!SequenceDiagram
         to Test : AbstractTestModel!Test {
-            Test.name = SequnceDiagram.name
+            Test.name = SequnceDiagram.lifeLines.findFirst[ it.start ].name.concat("Test_")
+            //the lifeLine where start is true 
+            Test.class.name = SequnceDiagram.lifeLines.findFirst[ it.start ].name
+            Test.class.classes.addAll(SequnceDiagram.lifeLines.findAll[ !it.start ].collect[ it.name ])
             
-
         }
