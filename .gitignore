@@ -1,8 +1,8 @@
 /bin/
 *.editor
 *.edit
-*.tests
-*/src
+*Model.tests
+*Model/src
 */META-INF
 */build.properties
 */plugin.properties

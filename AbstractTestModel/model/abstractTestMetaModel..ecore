@@ -4,14 +4,16 @@
     nsPrefix="abstractTestModel">
   <eClassifiers xsi:type="ecore:EClass" name="Test">
     <eStructuralFeatures xsi:type="ecore:EReference" name="testClass" lowerBound="1"
-        eType="#//Class" containment="true"/>
+        eType="#//Class" containment="true" eOpposite="#//Class/parent"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Class">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="dependencies" upperBound="-1"
         eType="#//Class"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="methods" lowerBound="1"
-        upperBound="-1" eType="#//Method" containment="true"/>
+        upperBound="-1" eType="#//Method" containment="true" eOpposite="#//Method/class.1"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="parent" eType="#//Test"
+        eOpposite="#//Test/testClass"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Method">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -22,6 +24,8 @@
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="thrownExceptions" upperBound="-1"
         eType="#//Exception"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="class" eType="#//Class"
+        eOpposite="#//Class/methods"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Variable">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
