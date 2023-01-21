@@ -2,7 +2,7 @@
 <ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="sequenceMetaModel" nsURI="sequenceMetaModel" nsPrefix="sequenceMetaModel">
   <eClassifiers xsi:type="ecore:EClass" name="Message" eSuperTypes="#//InteractionFragment">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="operation" eType="#//Operation"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="operationn" eType="#//Operation"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="target" lowerBound="1"
         eType="#//LifeLine"/>
