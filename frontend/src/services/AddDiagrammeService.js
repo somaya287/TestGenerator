@@ -25,8 +25,16 @@ console.log(res);
     );
 
 };
-
-
+/*
+async function uploadFile() {
+    let formData = new FormData(); 
+    formData.append("file", fileupload.files[0]);
+    let response = await fetch('/upload', {
+      method: "POST", 
+      body: formData
+    }); 
+  }
+*/
 
 
 export default AddDiagrammesService;

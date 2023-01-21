@@ -12,12 +12,14 @@
         <classes>org.junit.jupiter.api.BeforeEach</classes>
         <classes>org.junit.jupiter.api.DisplayName</classes>
         <dependencies>third</dependencies>
+        <dependencies>anotherONe</dependencies>
       </importBlock>
       <testClass name="FirstTest" displayName="test the classFirst">
         <methods xsi:type="JavaTestMetaModel:TestMethod" name="testSomeMessage" displayName="test the method someMessage">
           <givenBlock>
             <regularInstructions do="// here goes all your additional instructions"/>
             <mockInstructions class="/1"/>
+            <mockInstructions class="/2"/>
           </givenBlock>
           <whenBlock>
             <methodCallInstructions methodName="someMessage" class="/3">
@@ -28,6 +30,12 @@
             </methodMockInstructions>
             <methodMockInstructions methodName="get" mockedClass="/0/@testFiles.0/@testClass/@methods.0/@givenBlock/@mockInstructions.0">
               <returnValue name="s" type="String"/>
+            </methodMockInstructions>
+            <methodMockInstructions methodName="lolol" mockedClass="/0/@testFiles.0/@testClass/@methods.0/@givenBlock/@mockInstructions.1">
+              <returnValue name="res3" type="Float"/>
+            </methodMockInstructions>
+            <methodMockInstructions methodName="hhh" mockedClass="/0/@testFiles.0/@testClass/@methods.0/@givenBlock/@mockInstructions.1">
+              <returnValue name="rrr" type="String"/>
             </methodMockInstructions>
           </whenBlock>
           <thenBlock>
@@ -55,7 +63,7 @@
       </testClass>
     </testFiles>
   </JavaTestMetaModel:TestPackage>
-  <JavaTestMetaModel:Class name="third" dependencies="/2"/>
+  <JavaTestMetaModel:Class name="third"/>
   <JavaTestMetaModel:Class name="anotherONe"/>
-  <JavaTestMetaModel:Class name="First" dependencies="/1"/>
+  <JavaTestMetaModel:Class name="First" dependencies="/1 /2"/>
 </xmi:XMI>

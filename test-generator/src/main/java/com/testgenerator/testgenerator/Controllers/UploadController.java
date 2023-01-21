@@ -12,8 +12,23 @@ import java.io.InputStream;
 @Slf4j
 @RestController
 @RequestMapping("/")
-public class ReceiveXML {
+public class UploadController {
 
+    @PostMapping("/upload")
+    public ResponseEntity<> handleFileUpload( @RequestParam("file") MultipartFile file ) {
+
+        String fileName = file.getOriginalFilename();
+        try {
+            //
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+        return new ResponseEntity<>(
+            HttpStatus.OK;
+        );
+    }
+
+    /*
     @PostMapping("/1")
     public void handleXMLStream(@RequestBody InputStream stream) {
         try {
@@ -28,6 +43,6 @@ public class ReceiveXML {
     @PostMapping("/2")
     public void handleXMLFile(@RequestParam("file") MultipartFile file) {
         // your code to handle the XML file
-    }
+    }*/
 
 }

@@ -11,6 +11,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 	
 import third from /*insert your classe's package here*/;
+import anotherONe from /*insert your classe's package here*/;
 	
 
 @DisplayName("test the classFirst")
@@ -22,10 +23,12 @@ public class FirstTest {
 		// ***** given :
 		
 		third third; 
+		anotherONe anotherONe; 
 					
 		third = mock(third.class);
+		anotherONe = mock(anotherONe.class);
  
-		First first = new First(third);
+		First first = new First(third, anotherONe);
 	
 		// here goes all your additional instructions
 				
@@ -37,6 +40,12 @@ public class FirstTest {
 		String s = /*write the return value*/;	
 		
 		when(third.get()).thenReturn(s);
+		Float res3 = /*write the return value*/;	
+		
+		when(anotherONe.lolol()).thenReturn(res3);
+		String rrr = /*write the return value*/;	
+		
+		when(anotherONe.hhh()).thenReturn(rrr);
 					
 		Int res = first.someMessage();
 				
