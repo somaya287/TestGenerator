@@ -1,0 +1,115 @@
+package [%=package%];
+
+[%if (f.importBlock.isDefined()){%]
+	[%if (f.importBlock.staticMethods.isDefined()){%]
+		[%for (staticMethod in f.importBlock.staticMethods) {%]
+import static [%=staticMethod%];
+		[%}%]
+	[%}%]
+	
+	[%if (f.importBlock.classes.isDefined()) {%]
+		[%for (class in f.importBlock.classes) {%]
+import [%=class%];
+		[%}%]
+	[% } %]
+	
+	[%if (f.importBlock.dependencies.isDefined()) {%]
+		[%for (dep in f.importBlock.dependencies) {%]
+import [%=dep%] from /*insert your classe's package here*/;
+		[%}%]
+	[% } %]	
+[%}%]
+
+[%if (f.testClass.displayName.isDefined()) {%]
+@DisplayName("[%=f.testClass.displayName%]")
+[%}%]
+public class [%=f.testClass.name%] {
+	[%if (f.testClass.methods.isDefined()) {%]
+		[%for (method in f.testClass.methods) {%]
+		
+			[%if ( method.isKindOf(AfterAllMethod) or method.isKindOf(BeforeAllMethod) or
+				 method.isKindOf(BeforeEachMethod) or method.isKindOf(AfterEachMethod) ) {%]
+				[%if (method.isKindOf(AfterAllMethod)) {%]
+	@AfterAll	
+				[%}%]
+				[%if (method.isKindOf(BeforeAllMethod)) {%]
+	@BeforeAll		
+				[%}%]
+				[%if (method.isKindOf(BeforeEachMethod)) {%]
+	@BeforeEach		
+				[%}%]
+				[%if (method.isKindOf(AfterEachMethod)) {%]
+	@AfterEach		
+				[%}%]
+	public void [%=method.name%]() {
+				[%for (instruction in method.instructions) {%]
+		[%=instruction.do%]
+				[%}%]
+	}
+	
+			[%}%]
+			[%if ( method.isKindOf(TestMethod) ) {%]
+				[* [% if ( method.testAnnotation.expectedException.isDefined()) {%]
+	@Test(expected = [%=method.testAnnotation.expectedException%].class)
+				[%}%] *]
+				[*
+				[%else {%]
+	@Test
+				[%}%]*]
+	@Test
+	public void [%=method.name%]() {
+	
+		// ***** given :
+		
+				[%if ( method.givenBlock.isDefined()) {%]
+					[% method.givenBlock.println(); %]
+					[% for (inst in method.givenBlock.mockInstructions) {%]
+		[%=inst.class.name%] [%=inst.class.name.ftlc()%]; 
+					[%}%]
+					
+					[% for (inst in method.givenBlock.mockInstructions) {%]
+		[%=inst.class.name.ftlc()%] = mock([%=inst.class.name%].class);
+					[%}%]
+					[%if ( method.whenBlock.isDefined()) {%]
+						[% for (inst in method.whenBlock.methodCallInstructions) {%]
+							[%if (inst.class.name.isDefined()) {%] 
+		[%=inst.class.name%] [%=inst.class.name.ftlc()%] = new [%=inst.class.name%]([%=inst.class.dependencies.collect(dep | dep.name.ftlc()).concat(", ")%]);
+							[%}%]
+						[%}%]
+					[%}%]	
+					[% for (inst in method.givenBlock.regularInstructions) {%]
+		[%=inst.do%]
+					[%}%]
+				[%}%]
+				
+		// ***** when :
+		
+				[%if ( method.whenBlock.isDefined()) {%]
+					[% for (inst in method.whenBlock.methodMockInstructions) {%]
+		[%=inst.returnValue.type%] [%=inst.returnValue.name%] = /*write the return value*/;	
+		
+		when([%=inst.mockedClass.class.name.ftlc()%].[%=inst.methodName%]([%=inst.parameters.collect(v : Variable | v.name).concat(", ")%])).thenReturn([%=inst.returnValue.name%]);
+					[%}%]
+					
+					[% for (inst in method.whenBlock.methodCallInstructions) {%]
+		[%=inst.returnValue.type%] [%=inst.returnValue.name%] = [%=inst.class.name.ftlc()%].[%=inst.methodName%]([%=inst.parameters.collect(v : Variable | v.name).concat(", ")%]);
+					[%}%]
+				[%}%]
+				
+		// ***** Then :
+		
+				[%if ( method.thenBlock.isDefined()) {%]
+					[% for (inst in method.thenBlock.assertInstructions) {%]
+						[%if (Set{"assertTrue", "assertNull", "assertFalse", "assertNotNull"}.includes(inst.assertionType)) {%]
+		// [%=inst.assertionType%]([%=inst.toCompare.returnValue.name%]);				
+						[%}%]
+						[% else {%]
+		// [%=inst.assertionType%](/*[%=inst.expected%]*/,[%=inst.toCompare.returnValue.name%]);				
+						[%}%]
+					[%}%]
+				[%}%]
+	}
+			[%}%]
+		[%}%]
+	[%}%]	
+}

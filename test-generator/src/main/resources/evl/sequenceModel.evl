@@ -1,0 +1,167 @@
+context SequenceDiagram {
+    constraint NameIsDefined {
+		check: self.name.isDefined()
+		message: "The Sequence class's name should be definded"
+	}
+	
+	constraint NameIsWellFormed {
+		guard: self.satisfies("NameIsDefined")
+		check: self.name.matches("[a-z0-9_A-Z ]*$")
+		message: "The Sequence diagram's name is not well formed"
+	}
+    constraint HasAtLeastOneLifeLine {
+
+        check: self.lifeLines.size() > 0
+        message: "The sequence diagram must have at least one lifeline"     
+    }
+}
+
+context LifeLine {
+    constraint NameIsDefined {
+		check: self.name.isDefined()
+		message: "The LifeLine class's name should be definded"
+	}
+	
+	constraint NameIsWellFormed {
+		guard: self.satisfies("NameIsDefined")
+		check: self.name.matches("[a-z0-9_A-Z ]*$")
+		message: "The LifeLine class's name is not well formed"
+	}
+	
+    constraint IsLinkedToAnObject {
+            check: self.abstractObject <> null
+            message: "The lifeline must be linked to an object"
+    } 
+}
+
+context Message {
+    constraint NameIsDefined {
+		check: self.name.isDefined()
+		message: "The Message class's name should be definded"
+	}
+	
+	constraint NameIsWellFormed {
+		guard: self.satisfies("NameIsDefined")
+		check: self.name.matches("[a-z0-9_A-Z ]*$")
+		message: "The Message class's name is not well formed"
+	}
+        
+    
+    constraint IsLinkedToASequenceDiagram {
+           
+        check: self.sequenceDiagram <> null
+        message: "The message must be linked to a sequence diagram"
+    }
+
+    constraint HasSourceLifeline {
+        check: self.source <> null
+        message: "The message must be have a source lifeline"
+    }
+    
+    constraint HasTargetLifeline {
+        check: self.source <> null
+        message: "The message must have a target lifeline"
+    }
+
+    /*constraint TypeisTypeOfMessageKind {
+        check: self.type.isKindOf(MessageKind)
+        message: "The type must be of type MessageKind"
+    }*/
+}
+
+context Operation {
+    constraint ReturnVariableIsDefined {
+		check: self.returnVariable.isDefined()
+		message: "The ReturnVariable class's name should be definded"
+	}
+	
+	constraint ReturnVariableIsWellFormed {
+		check: self.returnVariable.matches("[a-z0-9_A-Z ]*$")
+		message: "The ReturnVariable class's name is not well formed"
+	}
+
+    constraint ReturnTypeIsDefined {
+		check: self.returnType.isDefined()
+		message: "The returnType class's name should be definded"
+	}
+	
+	constraint ReturnTypeIsWellFormed {
+		check: self.returnType.matches("[a-z0-9_A-Z ]*$")
+		message: "The returnType class's name is not well formed"
+	}
+
+    constraint GuardIsDefined {
+		check: self.guardd.isDefined()
+		message: "The Guard class's name should be definded"
+	}
+	
+	constraint GuardIsWellFormed {
+		check: self.guardd.matches("[a-z0-9_A-Z ]*$")
+		message: "The Guard class's name is not well formed"
+	}
+
+}
+
+context Param {
+    constraint ArgNameIsDefined {
+		check: self.argName.isDefined()
+		message: "The ArgName class's name should be definded"
+	}
+	
+	constraint ArgNameIsWellFormed {
+		check: self.argName.matches("[a-z0-9_A-Z ]*$")
+		message: "The ArgName class's name is not well formed"
+	}
+
+    constraint ArgTypeIsDefined {
+		check: self.argType.isDefined()
+		message: "The ArgType class's name should be definded"
+	}
+	
+	constraint ArgTypeIsWellFormed {
+		check: self.argType.matches("[a-z0-9_A-Z ]*$")
+		message: "The ArgType class's name is not well formed"
+	}
+}
+
+context InteractionOperand {
+     constraint GuardIsDefined {
+		check: self.guardd.isDefined()
+		message: "The Guard class's name should be definded"
+	}
+	
+	constraint GuardIsWellFormed {
+		check: self.guardd.matches("[a-z0-9_A-Z ]*$")
+		message: "The Guard class's name is not well formed"
+	}
+}
+
+context CombinedFragment {
+     constraint NameIsDefined {
+		check: self.name.isDefined()
+		message: "The Name class's name should be definded"
+	}
+	
+	constraint NameIsWellFormed {
+		check: self.name.matches("[a-z0-9_A-Z ]*$")
+		message: "The Name class's name is not well formed"
+	}
+
+    constraint InteractionOperatorIsTypeOfOperatorKind {
+        check: self.interactionOperator.oclIsKindOf(OperatorKind)
+        message: "The interaction operator must be of type OperatorKind"
+    }
+}
+
+context AbstractObject {
+     constraint NameIsDefined {
+		check: self.name.isDefined()
+		message: "The Name class's name should be definded"
+	}
+	
+	constraint NameIsWellFormed {
+		guard: self.satisfies("NameIsDefined")
+		check: self.name.matches("[a-z0-9_A-Z ]*$")
+		message: "The Name class's name is not well formed"
+	}
+}
