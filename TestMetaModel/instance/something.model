@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="ASCII"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:JavaTestMetaModel="JavaTestMetaModel" xsi:schemaLocation="JavaTestMetaModel ../model/javaTestMetaModel.ecore">
+  <JavaTestMetaModel:TestPackage name="soma_package">
+    <testFiles name="SomaTest">
+      <importBlock>
+        <staticMethods>org.mockito.Mockito.*</staticMethods>
+        <staticMethods>org.junit.jupiter.api.Assertions.*</staticMethods>
+        <classes>org.junit.jupiter.api.AfterAll</classes>
+        <classes>org.junit.jupiter.api.BeforeAll</classes>
+        <classes>org.junit.jupiter.api.Test</classes>
+        <classes>org.junit.jupiter.api.AfterEach</classes>
+        <classes>org.junit.jupiter.api.BeforeEach</classes>
+        <classes>org.junit.jupiter.api.DisplayName</classes>
+        <dependencies>Maymoun</dependencies>
+      </importBlock>
+      <testClass name="SomaTest" displayName="test the classSoma">
+        <methods xsi:type="JavaTestMetaModel:TestMethod" name="testSomaM" displayName="test the method somaM">
+          <givenBlock>
+            <regularInstructions do="// here goes all your additional instructions"/>
+            <mockInstructions class="/1"/>
+          </givenBlock>
+          <whenBlock>
+            <methodCallInstructions methodName="somaM" class="/2">
+              <parameters name="a" type="int"/>
+              <returnValue name="result" type="boolean"/>
+            </methodCallInstructions>
+            <methodMockInstructions methodName="method2" mockedClass="/0/@testFiles.0/@testClass/@methods.0/@givenBlock/@mockInstructions.0">
+              <parameters name="c" type="int"/>
+              <returnValue name="res" type="int"/>
+            </methodMockInstructions>
+          </whenBlock>
+          <thenBlock>
+            <assertInstructions assertionType="assertNull" toCompare="/0/@testFiles.0/@testClass/@methods.0/@whenBlock/@methodCallInstructions.0"/>
+            <assertInstructions assertionType="assertTrue" toCompare="/0/@testFiles.0/@testClass/@methods.0/@whenBlock/@methodCallInstructions.0"/>
+            <assertInstructions assertionType="assertNotNull" toCompare="/0/@testFiles.0/@testClass/@methods.0/@whenBlock/@methodCallInstructions.0"/>
+            <assertInstructions assertionType="assertFalse" toCompare="/0/@testFiles.0/@testClass/@methods.0/@whenBlock/@methodCallInstructions.0"/>
+            <assertInstructions assertionType="assertEquals" expected="your expected value" toCompare="/0/@testFiles.0/@testClass/@methods.0/@whenBlock/@methodCallInstructions.0"/>
+            <assertInstructions assertionType="assertNotEquals" expected="your expected value" toCompare="/0/@testFiles.0/@testClass/@methods.0/@whenBlock/@methodCallInstructions.0"/>
+            <assertInstructions assertionType="assertArrayEquals" expected="your expected value" toCompare="/0/@testFiles.0/@testClass/@methods.0/@whenBlock/@methodCallInstructions.0"/>
+          </thenBlock>
+        </methods>
+        <methods xsi:type="JavaTestMetaModel:AfterAllMethod">
+          <instructions do="// here goes the code to be excecuted after all tests"/>
+        </methods>
+        <methods xsi:type="JavaTestMetaModel:AfterEachMethod">
+          <instructions do="// here goes the code to be excecuted after each test"/>
+        </methods>
+        <methods xsi:type="JavaTestMetaModel:BeforeAllMethod">
+          <instructions do="// here goes the code to be excecuted before all tests"/>
+        </methods>
+        <methods xsi:type="JavaTestMetaModel:BeforeEachMethod">
+          <instructions do="// here goes the code to be excecuted before each test"/>
+        </methods>
+      </testClass>
+    </testFiles>
+  </JavaTestMetaModel:TestPackage>
+  <JavaTestMetaModel:Class name="Maymoun"/>
+  <JavaTestMetaModel:Class name="Soma" dependencies="/1"/>
+</xmi:XMI>

@@ -26,6 +26,7 @@ import [%=dep%] from /*insert your classe's package here*/;
 public class [%=f.testClass.name%] {
 	[%if (f.testClass.methods.isDefined()) {%]
 		[%for (method in f.testClass.methods) {%]
+		
 			[%if ( method.isKindOf(AfterAllMethod) or method.isKindOf(BeforeAllMethod) or
 				 method.isKindOf(BeforeEachMethod) or method.isKindOf(AfterEachMethod) ) {%]
 				[%if (method.isKindOf(AfterAllMethod)) {%]
@@ -45,27 +46,29 @@ public class [%=f.testClass.name%] {
 		[%=instruction.do%]
 				[%}%]
 	}
+	
 			[%}%]
 			[%if ( method.isKindOf(TestMethod) ) {%]
-				[%if ( method.testAnnotation.expectedException.isDefined()) {%]
-	@test(expected = [%=method.testAnnotation.expectedException%].class)
-				[%}%]
+				[* [% if ( method.testAnnotation.expectedException.isDefined()) {%]
+	@Test(expected = [%=method.testAnnotation.expectedException%].class)
+				[%}%] *]
+				[*
 				[%else {%]
-	@test
-				[%}%]	
+	@Test
+				[%}%]*]
+	@Test
 	public void [%=method.name%]() {
 	
 		// ***** given :
+		
 				[%if ( method.givenBlock.isDefined()) {%]
-					[% for (inst in method.givenBlock.mockInsructions) {%]
+					[% method.givenBlock.println(); %]
+					[% for (inst in method.givenBlock.mockInstructions) {%]
 		[%=inst.class.name%] [%=inst.class.name.ftlc()%]; 
 					[%}%]
 					
-					[% for (inst in method.givenBlock.mockInsructions) {%]
-		[%=inst.class.name.ftlc()%] = Mockito.mock([%=inst.class.name%].class);
-					[%}%]
-					[% for (inst in method.givenBlock.regularInstructions) {%]
-		[%=inst%]
+					[% for (inst in method.givenBlock.mockInstructions) {%]
+		[%=inst.class.name.ftlc()%] = mock([%=inst.class.name%].class);
 					[%}%]
 					[%if ( method.whenBlock.isDefined()) {%]
 						[% for (inst in method.whenBlock.methodCallInstructions) {%]
@@ -74,31 +77,39 @@ public class [%=f.testClass.name%] {
 							[%}%]
 						[%}%]
 					[%}%]	
+					[% for (inst in method.givenBlock.regularInstructions) {%]
+		[%=inst.do%]
+					[%}%]
 				[%}%]
+				
 		// ***** when :
+		
 				[%if ( method.whenBlock.isDefined()) {%]
 					[% for (inst in method.whenBlock.methodMockInstructions) {%]
-		when([%=inst.mockedClass.className.ftlc()%].[%=inst.methodName%]([%=inst.parameters.collect(Variable : v | v.name).concat(", ")%]).thenReturn([%=inst.returnValue.name%])
+		[%=inst.returnValue.type%] [%=inst.returnValue.name%] = /*write the return value*/;	
+		
+		when([%=inst.mockedClass.class.name.ftlc()%].[%=inst.methodName%]([%=inst.parameters.collect(v : Variable | v.name).concat(", ")%])).thenReturn([%=inst.returnValue.name%]);
 					[%}%]
 					
 					[% for (inst in method.whenBlock.methodCallInstructions) {%]
-		[%=inst.returnValue.type%] [%=inst.returnValue.name%] = [%=inst.class.name.ftlc()%].[%=inst.methodName%]([%=inst.parameters.collect(Variable : v | v.name).concat(", ")%]);
+		[%=inst.returnValue.type%] [%=inst.returnValue.name%] = [%=inst.class.name.ftlc()%].[%=inst.methodName%]([%=inst.parameters.collect(v : Variable | v.name).concat(", ")%]);
 					[%}%]
 				[%}%]
 				
 		// ***** Then :
+		
 				[%if ( method.thenBlock.isDefined()) {%]
 					[% for (inst in method.thenBlock.assertInstructions) {%]
 						[%if (Set{"assertTrue", "assertNull", "assertFalse", "assertNotNull"}.includes(inst.assertionType)) {%]
-		[%=inst.assertionType%]([%=inst.toCompare.returnValue.name%]);				
+		// [%=inst.assertionType%]([%=inst.toCompare.returnValue.name%]);				
 						[%}%]
 						[% else {%]
-		[%=inst.assertionType%](/*[%=inst.expected%]*/,[%=inst.toCompare.returnValue.name%]);				
+		// [%=inst.assertionType%](/*[%=inst.expected%]*/,[%=inst.toCompare.returnValue.name%]);				
 						[%}%]
 					[%}%]
 				[%}%]
 	}
 			[%}%]
 		[%}%]
-	[%}%]
+	[%}%]	
 }
