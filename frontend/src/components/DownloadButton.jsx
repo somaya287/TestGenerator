@@ -1,10 +1,10 @@
 import React from 'react';
 import DownloadIcon from '@mui/icons-material/Download';
 
-const DownloadButton = () => {
+const DownloadButton = (props) => {
     return (
         <div>
-            <button type="button" className='button' onClick={() => console.log('click')}>
+            <button  id={props.id} type="button" className='button' onClick={() => props.onclick}>
                 <div className='button-text'>DOWNLOAD CODE FILE</div>
                 <div className='button-icon'><DownloadIcon/></div>
             </button>

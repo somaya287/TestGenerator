@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const AddDiagrammesService = (data,Diagramme) => {
+const AddDiagrammesService = (data,Diagramme,SetresultTest) => {
     const dataToSend = {
         type: {Diagramme},
         file: data.get('fie'),
@@ -15,7 +15,8 @@ const AddDiagrammesService = (data,Diagramme) => {
     }).then(
         (res) => {
 console.log(res);
-          
+SetresultTest(res.data)
+ 
         }
         ,
         (err) => {
