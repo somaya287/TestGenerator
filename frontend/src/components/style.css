@@ -1,6 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap');
-</style>
 .App {
 
   background-size: cover;
@@ -12,8 +11,7 @@
 .text{
 font-family: 'Orbitron', sans-serif;
 position: absolute;
-width: 588px;
-height: 40px;
+
 left: 432px;
 top: 98px;
 
@@ -46,4 +44,113 @@ color: #F8EF00;
   font-family: 'Orbitron', sans-serif;
   padding: 20px 250px 20px 30px;
   clip-path: polygon(0 1%, 100% 0%, 100% 100%, 10% 100%, 0 75%);
+  cursor: pointer;
+  position: relative;
 }
+.button-text{
+  display: inline-block;
+}
+.button-icon{
+  display: inline-block;
+  position: absolute;
+  right: 0;
+  padding-right: 10px;
+}
+
+.imgz{position: absolute;
+    width: 176px;
+    height: 173px;
+    left: 184px;
+    top: 81px;}
+
+    .txtField{
+        box-sizing: border-box;
+
+/* Auto layout */
+border-color: #00F0FF !important;
+
+display: flex;
+flex-direction: row;
+align-items: center;
+padding: 20px;
+gap: 12px;
+
+position: absolute;
+width: 1019px;
+height: 64px;
+left: 280px;
+top: 350px;
+
+background: rgba(0, 240, 255, 0.1);
+border: 2px solid #00F0FF;
+
+width: 913px;
+height: 24px;
+
+/* Base */
+
+font-family: 'Tomorrow';
+font-style: normal;
+font-weight: 400;
+font-size: 16px;
+line-height: 24px;
+/* identical to box height, or 150% */
+
+letter-spacing: 0.2em;
+
+color: #00F0FF;
+
+
+/* Inside auto layout */
+
+flex: none;
+order: 0;
+flex-grow: 1;
+
+
+    }
+    .txtinpt{       box-sizing: border-box;
+
+        /* Auto layout */
+        border-color: #00F0FF !important;
+        
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        padding: 20px;
+        gap: 12px;
+        
+        position: absolute;
+        width: 1019px;
+        height: 64px;
+        left: 280px;
+        top: 450px;
+        
+        background: rgba(0, 240, 255, 0.1);
+        border: 2px solid #00F0FF;
+        
+        width: 913px;
+        height: 24px;
+        
+        /* Base */
+        
+        font-family: 'Tomorrow';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 24px;
+        /* identical to box height, or 150% */
+        
+        letter-spacing: 0.2em;
+        
+        color: #00F0FF;
+        
+        
+        /* Inside auto layout */
+        
+        flex: none;
+        order: 0;
+        flex-grow: 1;
+        
+        }
+
