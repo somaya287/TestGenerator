@@ -1,0 +1,17 @@
+operation TestModel!TestPackage getPackageQualifiedName() : String {
+	var path : String;
+	path = self.name;
+	if (self.parentPackage.isDefined()) {
+		path = self.parentPackage.getPackageQualifiedName() + "." + path;
+	}
+	return path;
+}
+
+operation TestModel!TestPackage getPackageFullPath() : String {
+	var path : String;
+	path = self.name;
+	if (self.parentPackage.isDefined()) {
+		path = self.parentPackage.getPackageQualifiedName() + "/" + path;
+	}
+	return path;
+}

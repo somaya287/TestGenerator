@@ -1,0 +1,95 @@
+context TestPackage {
+	constraint hasName { 
+		check : self.name.size() > 0
+		message : "the package name shouldn't be null"
+	}
+	constraint hasValidName { 
+		check : self.name.matches("^[a-z][a-z0-9_]*$")
+		message : "A package name can contain only letters in lowercase, numbers and underscore and should start with a letter"
+	}
+}
+
+context TestFile {
+	constraint hasName {
+		check : self.name.size() > 0
+		message : "the file name shouldn't be null"
+	}
+	constraint hasValidName { 
+		check : self.name.matches("^[A-Z][a-zA-Z0-9]*Test$")
+		message : "A file name can contain only letters, numbers. It should start with an uppercase letter and end with Test"
+	}
+}
+
+context TestClass {
+	constraint className {
+		check : self.name = self.testFile.name
+		message : "The class should have the same name as the file"
+	}
+}
+
+context TestMethod {
+	constraint hasValidName { 
+		check : self.name.matches("test[A-Z][A-Za-z0-9_]*$")
+		message : "A method name can contain only letters, numbers, and underscore. It should start with test followed by an uppercase letter"
+	}
+}
+
+context TestAnnotation {
+	constraint validExceptionName {
+		guard : self.expectedException.isDefined()
+		check : self.expectedException.matches("^[A-Z][a-zA-Z0-9]*Exception$")
+		message : "Exception name should contain only letters and numbers, should start with an uppercase letter, and should end with Exception"
+	}
+}
+
+context AssertInstruction {
+	constraint validAssertionType {
+		guard : self.assertionType.isDefined()
+		check : self.assertionType.matches("^assert[a-zA-Z]*$")
+		message : "An assertion type should start with assert"
+	}
+}
+
+context ImportedClass {
+	constraint hasName {
+		check : self.name.size() > 0
+		message : "the class name shouldn't be null"
+	}
+	constraint hasValidName { 
+		check : self.name.matches("^[A-Z][a-zA-Z0-9]*$")
+		message : "A class name can contain only letters, numbers. It should start with an uppercase letter"
+	}
+}
+
+context Method {
+	constraint hasName {
+		check : self.name.size() > 0 
+		message : "the method name shouldn't be null"
+	}
+	constraint hasValidName { 
+		check : self.name.matches("[a-z][A-Za-z0-9_]*$")
+		message : "A method name can contain only letters, numbers, and underscore. It should start with a lowercase letter"
+	}
+}
+
+context ImportedMethod {
+	constraint hasName {
+		check : self.name.size() > 0 
+		message : "the method name shouldn't be null"
+	}
+	constraint hasValidName { 
+		check : self.name.matches("[a-z][A-Za-z0-9_]*$")
+		message : "A method name can contain only letters, numbers, and underscore. It should start with a lowercase letter"
+	}
+}
+
+context Variable {
+	constraint hasName {
+		check : self.name.size() > 0 
+		message : "the variable name shouldn't be null"
+	}
+	constraint hasValidName { 
+		check : self.name.matches("[A-Za-z0-9_]*$")
+		message : "A variable name can contain only letters, numbers, and underscore."
+	}
+}

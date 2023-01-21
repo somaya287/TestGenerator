@@ -1,5 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Tomorrow:wght@700&display=swap');
 .App {
 
   background-size: cover;
@@ -9,7 +8,7 @@
 
 }
 .text{
-font-family: 'Orbitron', sans-serif;
+font-family: 'Tomorrow', sans-serif;
 position: absolute;
 
 left: 432px;
@@ -41,9 +40,10 @@ color: #F8EF00;
 .button{
   background-color: #F8EF00;
   font-size: 15px;
-  font-family: 'Orbitron', sans-serif;
+  font-family: 'Tomorrow', sans-serif;
   padding: 20px 250px 20px 30px;
-  clip-path: polygon(0 1%, 100% 0%, 100% 100%, 10% 100%, 0 75%);
+  clip-path: polygon(0 1%, 100% 0%, 100% 100%, 8% 100%, 0 75%);
+  position: relative;
   cursor: pointer;
   
 }

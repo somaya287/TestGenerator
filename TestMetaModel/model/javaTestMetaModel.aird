@@ -6,6 +6,7 @@
     <semanticResources>javaTestMetaModel.ecore</semanticResources>
     <semanticResources>javaTestMetaModel.genmodel</semanticResources>
     <semanticResources>../instance/something.model</semanticResources>
+    <semanticResources>../instances/dest.model</semanticResources>
     <ownedViews xmi:type="viewpoint:DView" uid="_B4F9QJOvEe2US9u6DpG8JQ">
       <viewpoint xmi:type="description:Viewpoint" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']"/>
       <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" uid="_B4hbEJOvEe2US9u6DpG8JQ" name="testModel" repPath="#_B4e-0JOvEe2US9u6DpG8JQ" changeId="a325d006-d6c6-4190-9d67-f7665039c9cc">

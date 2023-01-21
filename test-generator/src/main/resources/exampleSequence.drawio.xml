@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile host="app.diagrams.net" modified="2023-01-21T06:31:52.422Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36" version="20.8.8" etag="KKID6KgDPkl96U6I_vNX" type="device">
+  <diagram name="Page-1" id="MyD8X_kXayAZWQ-R6_iH">
+    <mxGraphModel dx="2120" dy="1013" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="2" value=":YassirApp" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;outlineConnect=0;movable=1;resizable=1;rotatable=1;deletable=1;editable=1;connectable=1;" vertex="1" parent="1">
+          <mxGeometry x="220" y="60" width="100" height="940" as="geometry" />
+        </mxCell>
+        <mxCell id="3" value="" style="html=1;points=[];perimeter=orthogonalPerimeter;movable=1;resizable=1;rotatable=1;deletable=1;editable=1;connectable=1;" vertex="1" parent="2">
+          <mxGeometry x="45" y="60" width="10" height="870" as="geometry" />
+        </mxCell>
+        <mxCell id="4" value=":MimounApp" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;outlineConnect=0;" vertex="1" parent="1">
+          <mxGeometry x="380" y="60" width="100" height="940" as="geometry" />
+        </mxCell>
+        <mxCell id="5" value="" style="html=1;points=[];perimeter=orthogonalPerimeter;" vertex="1" parent="4">
+          <mxGeometry x="45" y="120" width="10" height="720" as="geometry" />
+        </mxCell>
+        <mxCell id="6" value=":SomiyaApp" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;outlineConnect=0;" vertex="1" parent="1">
+          <mxGeometry x="540" y="60" width="100" height="940" as="geometry" />
+        </mxCell>
+        <mxCell id="7" value="" style="html=1;points=[];perimeter=orthogonalPerimeter;" vertex="1" parent="6">
+          <mxGeometry x="45" y="200" width="10" height="550" as="geometry" />
+        </mxCell>
+        <mxCell id="8" value="Actor" style="shape=umlLifeline;participant=umlActor;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;verticalAlign=top;spacingTop=36;outlineConnect=0;" vertex="1" parent="1">
+          <mxGeometry x="100" y="65" width="40" height="935" as="geometry" />
+        </mxCell>
+        <mxCell id="9" value="[String]waYasser(int a)" style="html=1;verticalAlign=bottom;endArrow=block;rounded=0;" edge="1" source="8" target="2" parent="1">
+          <mxGeometry width="80" relative="1" as="geometry">
+            <mxPoint x="130" y="150" as="sourcePoint" />
+            <mxPoint x="210" y="150" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="220" y="150" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="10" value=":HajarApp" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;outlineConnect=0;" vertex="1" parent="1">
+          <mxGeometry x="690" y="60" width="100" height="940" as="geometry" />
+        </mxCell>
+        <mxCell id="11" value="" style="html=1;points=[];perimeter=orthogonalPerimeter;" vertex="1" parent="10">
+          <mxGeometry x="45" y="310" width="10" height="340" as="geometry" />
+        </mxCell>
+        <mxCell id="12" value=":AminaApp" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;outlineConnect=0;" vertex="1" parent="1">
+          <mxGeometry x="850" y="60" width="100" height="950" as="geometry" />
+        </mxCell>
+        <mxCell id="13" value="" style="html=1;points=[];perimeter=orthogonalPerimeter;" vertex="1" parent="12">
+          <mxGeometry x="45" y="410" width="10" height="240" as="geometry" />
+        </mxCell>
+        <mxCell id="14" value="[Boolean]waMimoun(int a)" style="html=1;verticalAlign=bottom;endArrow=block;rounded=0;" edge="1" source="2" target="4" parent="1">
+          <mxGeometry width="80" relative="1" as="geometry">
+            <mxPoint x="320" y="260" as="sourcePoint" />
+            <mxPoint x="400" y="260" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="360" y="190" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="15" value="[String]waHajar(int a)" style="html=1;verticalAlign=bottom;endArrow=block;rounded=0;" edge="1" source="6" target="10" parent="1">
+          <mxGeometry width="80" relative="1" as="geometry">
+            <mxPoint x="660" y="390" as="sourcePoint" />
+            <mxPoint x="740" y="390" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="690" y="400" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="16" value="[String]waAmina(int a)" style="html=1;verticalAlign=bottom;endArrow=block;rounded=0;" edge="1" source="10" target="12" parent="1">
+          <mxGeometry width="80" relative="1" as="geometry">
+            <mxPoint x="760" y="420" as="sourcePoint" />
+            <mxPoint x="840" y="420" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="830" y="480" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="17" value="[String]achnoAHajar(int a)" style="html=1;verticalAlign=bottom;endArrow=block;rounded=0;" edge="1" source="12" target="10" parent="1">
+          <mxGeometry width="80" relative="1" as="geometry">
+            <mxPoint x="780" y="600" as="sourcePoint" />
+            <mxPoint x="860" y="600" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="820" y="590" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="18" value="[String]achnoASomiya(int a)" style="html=1;verticalAlign=bottom;endArrow=block;rounded=0;" edge="1" source="10" target="6" parent="1">
+          <mxGeometry width="80" relative="1" as="geometry">
+            <mxPoint x="750.4300000000001" y="610" as="sourcePoint" />
+            <mxPoint x="590.0014285714285" y="610" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="680" y="680" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="19" value="[String]achnoAMimoun(int a)" style="html=1;verticalAlign=bottom;endArrow=block;rounded=0;" edge="1" source="6" target="4" parent="1">
+          <mxGeometry width="80" relative="1" as="geometry">
+            <mxPoint x="585.1800000000003" y="789.9999999999998" as="sourcePoint" />
+            <mxPoint x="435.00352941176465" y="789.9999999999998" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="525.6800000000001" y="790" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="20" value="[String]achnoAMimoun(int a)" style="html=1;verticalAlign=bottom;endArrow=block;rounded=0;" edge="1" source="4" target="2" parent="1">
+          <mxGeometry width="80" relative="1" as="geometry">
+            <mxPoint x="410.11" y="890" as="sourcePoint" />
+            <mxPoint x="249.99888888888893" y="890" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="346.2900000000001" y="890" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="21" value="@" style="html=1;verticalAlign=bottom;endArrow=block;rounded=0;" edge="1" source="2" target="8" parent="1">
+          <mxGeometry width="80" relative="1" as="geometry">
+            <mxPoint x="280.6700000000002" y="930" as="sourcePoint" />
+            <mxPoint x="120.00333333333325" y="930" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="197.46000000000006" y="930" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="22" value="[Integer]waSomya(int a)" style="html=1;verticalAlign=bottom;endArrow=block;rounded=0;" edge="1" source="4" target="6" parent="1">
+          <mxGeometry width="80" relative="1" as="geometry">
+            <mxPoint x="435" y="290" as="sourcePoint" />
+            <mxPoint x="515" y="290" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="540" y="290" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
