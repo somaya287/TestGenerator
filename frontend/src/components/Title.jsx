@@ -7,6 +7,9 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import TextField from '@mui/material/TextField';
 import AddDiagrammesService from "../services/AddDiagrammeService"
+import {Stack} from "@mui/material"
+import DownloadButton from './DownloadButton';
+import CodeTextEditor from './CodeTextEditor';
 
 import Button from '@mui/material/Button';
 
@@ -31,7 +34,7 @@ export default function  Title () {
     return( <div>
             <img  className="imgz" src="./Logo.png" />
 
-    <p className="text">PASSWORD GENERATOR</p> 
+    <p className="text">TEST GENERATOR</p> 
 
     <Box sx={{ minWidth: 120 }} onSubmit={handleSubmit}>
     <label className='txtField1' style={{color:"white"}}for="standard-select">Select Diagram type</label>
@@ -43,11 +46,12 @@ export default function  Title () {
            
 
     </select>
-    <label  className='txtField2' style={{color:"white"}}for="standard-select">Upload your diagrame(.io)</label>
+    <label  className='txtField2' style={{color:"white"}}for="standard-select">Upload your Diagram(.io)</label>
 
         <input id="file" className='txtinpt' type="file" name="country"  placeholder="Select Diagram type"  ></input>
       
     </Box>
+   
     </div>
     );
 }
