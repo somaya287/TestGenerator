@@ -13,7 +13,7 @@ font-family: 'Orbitron', sans-serif;
 position: absolute;
 
 left: 432px;
-top: 98px;
+top: 48px;
 
 /* Heading */
 
@@ -45,7 +45,7 @@ color: #F8EF00;
   padding: 20px 250px 20px 30px;
   clip-path: polygon(0 1%, 100% 0%, 100% 100%, 10% 100%, 0 75%);
   cursor: pointer;
-  position: relative;
+  
 }
 .button-text{
   display: inline-block;
@@ -61,14 +61,12 @@ color: #F8EF00;
     width: 176px;
     height: 173px;
     left: 184px;
-    top: 81px;}
+    top: 40px;}
 
     .txtField{
-        box-sizing: border-box;
+ box-sizing: border-box;
 
-/* Auto layout */
 border-color: #00F0FF !important;
-
 display: flex;
 flex-direction: row;
 align-items: center;
@@ -79,35 +77,41 @@ position: absolute;
 width: 1019px;
 height: 64px;
 left: 280px;
-top: 350px;
-
+top: 300px;
+color: #00F0FF;
 background: rgba(0, 240, 255, 0.1);
 border: 2px solid #00F0FF;
 
 width: 913px;
-height: 24px;
 
-/* Base */
 
 font-family: 'Tomorrow';
 font-style: normal;
 font-weight: 400;
 font-size: 16px;
 line-height: 24px;
-/* identical to box height, or 150% */
+
+/*
+
+font-family: 'Tomorrow';
+font-style: normal;
+font-weight: 400;
+font-size: 16px;
+line-height: 24px;
+
 
 letter-spacing: 0.2em;
 
 color: #00F0FF;
 
 
-/* Inside auto layout */
+
 
 flex: none;
 order: 0;
 flex-grow: 1;
 
-
+*/
     }
     .txtinpt{       box-sizing: border-box;
 
@@ -130,7 +134,7 @@ flex-grow: 1;
         border: 2px solid #00F0FF;
         
         width: 913px;
-        height: 24px;
+        height: 64px;
         
         /* Base */
         
@@ -146,11 +150,86 @@ flex-grow: 1;
         color: #00F0FF;
         
         
-        /* Inside auto layout */
-        
-        flex: none;
-        order: 0;
-        flex-grow: 1;
-        
         }
 
+        .txtField1{ box-sizing: border-box;
+
+            
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            padding: 20px;
+            gap: 12px;
+            
+            position: absolute;
+            width: 1019px;
+            height: 64px;
+            left: 280px;
+            top: 250px;
+            
+            width: 913px;
+            height: 24px;
+            
+          
+            
+            font-family: 'Tomorrow';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 24px;
+
+            letter-spacing: 0.2em;
+            
+            color: #00F0FF;
+            
+          
+            
+            flex: none;
+            order: 0;
+            flex-grow: 1;
+            
+            }
+
+
+
+            .txtField2{ box-sizing: border-box;
+
+                /* Auto layout */
+              
+                
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                padding: 20px;
+                gap: 12px;
+                
+                position: absolute;
+                width: 1019px;
+                height: 64px;
+                left: 280px;
+                top: 400px;
+                
+                width: 913px;
+                height: 24px;
+                
+                /* Base */
+                
+                font-family: 'Tomorrow';
+                font-style: normal;
+                font-weight: 400;
+                font-size: 16px;
+                line-height: 24px;
+                /* identical to box height, or 150% */
+                
+                letter-spacing: 0.2em;
+                
+                color: #00F0FF;
+                
+                
+                /* Inside auto layout */
+                
+                flex: none;
+                order: 0;
+                flex-grow: 1;
+                
+                }

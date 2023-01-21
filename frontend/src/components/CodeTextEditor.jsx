@@ -9,7 +9,7 @@ const CodeTextEditor = () => {
       );
 
     return (
-        <div style={{width : "800px"}}>
+        <div >
         <CodeEditor
           value={code}
           language="js"
@@ -19,7 +19,7 @@ const CodeTextEditor = () => {
           style={{
             fontFamily:
               "ui-monospace,SFMono-Regular,SF Mono,Consolas,Liberation Mono,Menlo,monospace",
-              backgroundColor: "#f5f5f5",
+              backgroundColor: "#F0F0EB",
             fontSize: 12
           }}
         />
