@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="SequenceV2" nsURI="SequenceV2" nsPrefix="SequenceV2">
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="sequenceMetaModel" nsURI="sequenceMetaModel" nsPrefix="sequenceMetaModel">
   <eClassifiers xsi:type="ecore:EClass" name="Message" eSuperTypes="#//InteractionFragment">
     <eStructuralFeatures xsi:type="ecore:EReference" name="operation" eType="#//Operation"
         containment="true"/>
@@ -15,11 +15,11 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="lifeLines" lowerBound="1"
         upperBound="-1" eType="#//LifeLine" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="fragments" lowerBound="1"
-        upperBound="-1" eType="#//InteractionFragment" containment="true"/>
+        upperBound="-1" eType="#//InteractionFragment" containment="true" eOpposite="#//InteractionFragment/sequenceDiagram"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="LifeLine">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="abstractobject" lowerBound="1"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="abstractObject" lowerBound="1"
         eType="#//AbstractObject" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="start" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
@@ -34,13 +34,16 @@
         eType="#//Param" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="returnVariable" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="returnType" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="guard" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="guardd" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Param">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="argName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="argType" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="InteractionFragment" abstract="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="InteractionFragment" abstract="true">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="sequenceDiagram" eType="#//SequenceDiagram"
+        eOpposite="#//SequenceDiagram/fragments"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="CombinedFragment" eSuperTypes="#//InteractionFragment">
     <eStructuralFeatures xsi:type="ecore:EReference" name="operands" lowerBound="1"
         upperBound="-1" eType="#//InteractionOperand" containment="true"/>
@@ -50,7 +53,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="InteractionOperand">
     <eStructuralFeatures xsi:type="ecore:EReference" name="fragmentOperands" lowerBound="1"
         upperBound="-1" eType="#//InteractionFragment" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="guard" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="guardd" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="OperatorKind">
     <eLiterals name="opt"/>

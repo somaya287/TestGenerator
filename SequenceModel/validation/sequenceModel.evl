@@ -5,19 +5,15 @@ context SequenceDiagram {
 	}
 	
 	constraint NameIsWellFormed {
+		guard: self.satisfies("NameIsDefined")
 		check: self.name.matches("[a-z0-9_A-Z ]*$")
 		message: "The Sequence diagram's name is not well formed"
 	}
     constraint HasAtLeastOneLifeLine {
 
-        check: self.lifelines->size() > 0
-        message: "The sequence diagram must have at least one lifeline"
-      
+        check: self.lifeLines.size() > 0
+        message: "The sequence diagram must have at least one lifeline"     
     }
-
-
-
-
 }
 
 context LifeLine {
@@ -27,33 +23,15 @@ context LifeLine {
 	}
 	
 	constraint NameIsWellFormed {
+		guard: self.satisfies("NameIsDefined")
 		check: self.name.matches("[a-z0-9_A-Z ]*$")
 		message: "The LifeLine class's name is not well formed"
 	}
-
-
-
-
+	
     constraint IsLinkedToAnObject {
             check: self.abstractObject <> null
             message: "The lifeline must be linked to an object"
-        }
-    
-    
-    constraint ReceiveMessagesInOrder {
-            check: self.messages->forAll(m1, m2 | m1.order < m2.order implies m1.order + 1 = m2.order)
-            message: "The messages must be received in order"
-        }
-
-    constraint SendMessagesInOrder {
-            check: self.messages->forAll(m1, m2 | m1.order < m2.order implies m1.order + 1 = m2.order)
-            message: "The messages must be sent in order"
-        }
-    
-    
-
-         
-    
+    } 
 }
 
 context Message {
@@ -63,6 +41,7 @@ context Message {
 	}
 	
 	constraint NameIsWellFormed {
+		guard: self.satisfies("NameIsDefined")
 		check: self.name.matches("[a-z0-9_A-Z ]*$")
 		message: "The Message class's name is not well formed"
 	}
@@ -70,23 +49,24 @@ context Message {
     
     constraint IsLinkedToASequenceDiagram {
            
-            check: self.sequenceDiagram <> null
-            message: "The message must be linked to a sequence diagram"
-        }
-
-        constraint IsReferencedByALifeLine {
-            check: self.lifeline <> null
-            message: "The message must be referenced by a lifeline"
-        }
-
-    constraint TypeisTypeOfMessageKind {
-        check: self.type.oclIsKindOf(MessageKind)
-        message: "The type must be of type MessageKind"
+        check: self.sequenceDiagram <> null
+        message: "The message must be linked to a sequence diagram"
     }
 
-       
+    constraint HasSourceLifeline {
+        check: self.source <> null
+        message: "The message must be have a source lifeline"
+    }
+    
+    constraint HasTargetLifeline {
+        check: self.source <> null
+        message: "The message must have a target lifeline"
+    }
 
-
+    /*constraint TypeisTypeOfMessageKind {
+        check: self.type.isKindOf(MessageKind)
+        message: "The type must be of type MessageKind"
+    }*/
 }
 
 context Operation {
@@ -111,12 +91,12 @@ context Operation {
 	}
 
     constraint GuardIsDefined {
-		check: self.guards.isDefined()
+		check: self.guardd.isDefined()
 		message: "The Guard class's name should be definded"
 	}
 	
 	constraint GuardIsWellFormed {
-		check: self.guards.matches("[a-z0-9_A-Z ]*$")
+		check: self.guardd.matches("[a-z0-9_A-Z ]*$")
 		message: "The Guard class's name is not well formed"
 	}
 
@@ -142,19 +122,16 @@ context Param {
 		check: self.argType.matches("[a-z0-9_A-Z ]*$")
 		message: "The ArgType class's name is not well formed"
 	}
-
-
 }
-
 
 context InteractionOperand {
      constraint GuardIsDefined {
-		check: self.guards.isDefined()
+		check: self.guardd.isDefined()
 		message: "The Guard class's name should be definded"
 	}
 	
 	constraint GuardIsWellFormed {
-		check: self.guards.matches("[a-z0-9_A-Z ]*$")
+		check: self.guardd.matches("[a-z0-9_A-Z ]*$")
 		message: "The Guard class's name is not well formed"
 	}
 }
@@ -176,9 +153,6 @@ context CombinedFragment {
     }
 }
 
-
-
-
 context AbstractObject {
      constraint NameIsDefined {
 		check: self.name.isDefined()
@@ -186,6 +160,7 @@ context AbstractObject {
 	}
 	
 	constraint NameIsWellFormed {
+		guard: self.satisfies("NameIsDefined")
 		check: self.name.matches("[a-z0-9_A-Z ]*$")
 		message: "The Name class's name is not well formed"
 	}

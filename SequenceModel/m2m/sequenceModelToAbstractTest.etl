@@ -1,42 +1,43 @@
+@lazy
 rule ParmToVariable
-     transform Parm : SequenceModel!Parm
-     to Variable : AbstractTestModel!Variable {
-        Variable.name = Parm.name
-        Variable.type = Parm.type
+     transform param : SequenceModel!Param
+     to variable : AbstractTestModel!Variable {
+        variable.name = param.name;
+        variable.type = param.type;
 
      }
 
-    
+@lazy  
 rule MessageToMethod
-     transform SequnceDiagramMessage : SequenceModel!Message
-     to Method : AbstractTestModel!Method {
+     transform message : SequenceModel!Message
+     to method : AbstractTestModel!Method {
 
-      guard Method.source.isDefined() && Method.target.isDefined()
-        
-        Method.name = Message.name
-        Method.variables.addAll(Message.Operation.params.collect[ it.equivalent() ])
+      	guard : Method.source.isDefined() and Method.target.isDefined() 
+        method.name = message.name;
+        method.parameters.addAll(message.Operation.params.collect(it | it.equivalent("ParmToVariable")));
         //the return One
-         Method.variable = Message.Operation.returnVariable
+        method.returnValue = message.Operation.returnVariable;
       //   Method.parent.class.name = Message.source.name
       //   Method.parent.class.methodes.add(Method)
      }
 
+@lazy
 rule LifeLineToClass
-     transform SequnceDiagramLifeLine : SequenceModel!LifeLine
-     to Class : AbstractTestModel!Class {
-        Class.name = LifeLine.name
-        class.dependencies.addAll(SequenceModel!.Message.findAll[ it.source == LifeLine.name ].collect[ it.target.equivalent() ])
-        class.methodes.addAll(SequenceModel!.Message.findAll[ it.source == LifeLine.name ].collect[ it.Message.equivalent() ])
+     transform lifeLine : SequenceModel!LifeLine
+     to class : AbstractTestModel!Class {
+        class.name = lifeLine.name;
+        class.dependencies.addAll(SequenceModel!Message.all.select(it | it.source == lifeLine.name).collect(it | it.target.equivalent("LifeLineToClass")));
+        class.methods.addAll(SequenceModel!Message.all.select(it | it.source == lifeLine.name).collect(it | it.Message.equivalent("MessageToMethod") ));
 
      }
 
 
-
+@primary
 rule SequnceDiagramToTest
-        transform SequnceDiagram : SequenceModel!SequenceDiagram
-        to Test : AbstractTestModel!Test {
-            Test.name = SequnceDiagram.lifeLines.findFirst[ it.start ].name.concat("Test_")
+        transform sequenceDiagram : SequenceModel!SequenceDiagram
+        to test : AbstractTestModel!Test {
+            //test.name = sequenceDiagram.lifeLines.select(it | it.start ).at(0).name;
             //the lifeLine where start is true 
-            Test.class = SequnceDiagram.lifeLines.findFirst[ it.start ].equivalent()
+            test.testClass = sequenceDiagram.lifeLines.select(it |  it.start ).at(0).equivalent("LifeLineToClass");
             
-        }
+     }
