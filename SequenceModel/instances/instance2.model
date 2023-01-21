@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="ASCII"?>
-<abstractTestMetaModel:Test xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:abstractTestMetaModel="http://www.example.org/abstractTestMetaModel" xsi:schemaLocation="http://www.example.org/abstractTestMetaModel ../../AbstractTestModel/model/abstractTestMetaModel.ecore">
-  <testClass name="Class1"/>
-</abstractTestMetaModel:Test>

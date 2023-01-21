@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="ASCII"?>
+<abstractTestMetaModel:Test xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:abstractTestMetaModel="http://www.example.org/abstractTestMetaModel">
+  <testClass name="First">
+    <dependencies name="third">
+      <methods name="someOtherMessage">
+        <returnValue name="res2" type="Double"/>
+      </methods>
+      <methods name="get">
+        <returnValue name="s" type="String"/>
+      </methods>
+    </dependencies>
+    <dependencies name="anotherONe">
+      <methods name="lolol">
+        <returnValue name="res3" type="Float"/>
+      </methods>
+      <methods name="hhh">
+        <returnValue name="rrr" type="String"/>
+      </methods>
+    </dependencies>
+    <methods name="someMessage">
+      <returnValue name="res" type="Int"/>
+    </methods>
+  </testClass>
+</abstractTestMetaModel:Test>

@@ -1,13 +1,14 @@
 import React from 'react';
 import CodeEditor, { SelectionText } from "@uiw/react-textarea-code-editor";
 import './style.css'
+import { useEffect, useState } from 'react';
 
 const CodeTextEditor = () => {
 
-    const [code, setCode] = React.useState(
+    const [code, setCode] = React.useState( {data : ""}
         `function add(a, b) {\n  return a + b;\n}`
       );
-
+      
     return (
         <div >
         <CodeEditor

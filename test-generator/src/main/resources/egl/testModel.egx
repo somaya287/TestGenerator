@@ -1,0 +1,17 @@
+import "../utils/packageUtils.eol";
+
+rule TestFile2File transform f : TestModel!TestFile {
+	pre {
+		var package : TestModel!TestPackage;
+		package = f.testPackage;
+		var packageName : String;
+		packageName = package.getPackageQualifiedName();
+		var packagePath : String;
+		packagePath = package.getPackageFullPath();
+		packagePath.println();
+	}
+
+	template : "testFile2File.egl"
+	parameters : Map{"package" = packageName}
+	target : "src/test/java/" + packagePath + "/" + f.name + ".java" 
+}

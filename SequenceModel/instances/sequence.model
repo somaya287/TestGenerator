@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="ASCII"?>
+<sequenceMetaModel:SequenceDiagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:sequenceMetaModel="sequenceMetaModel" xmi:id="_umvRAJlDEe2dR500zYWxOg" name="Test">
+  <lifeLines xmi:id="_wrEgQJlDEe2dR500zYWxOg" name="First" start="true">
+    <abstractObject xsi:type="sequenceMetaModel:Object" xmi:id="_0xY1YJlDEe2dR500zYWxOg" name="obj"/>
+  </lifeLines>
+  <lifeLines xmi:id="_3FYRQJlDEe2dR500zYWxOg" name="actor">
+    <abstractObject xsi:type="sequenceMetaModel:Actor" xmi:id="_4B8nMJlDEe2dR500zYWxOg" name="actor"/>
+  </lifeLines>
+  <lifeLines xmi:id="_t65-YJlGEe2dR500zYWxOg" name="third">
+    <abstractObject xsi:type="sequenceMetaModel:Object" xmi:id="_vSLTUJlGEe2dR500zYWxOg" name="someMethod"/>
+  </lifeLines>
+  <lifeLines xmi:id="_3ueKMJlGEe2dR500zYWxOg" name="anotherONe">
+    <abstractObject xsi:type="sequenceMetaModel:Object" xmi:id="_7zVt0JlGEe2dR500zYWxOg" name="yes"/>
+  </lifeLines>
+  <fragments xsi:type="sequenceMetaModel:Message" xmi:id="_5GcxIJlDEe2dR500zYWxOg" target="_wrEgQJlDEe2dR500zYWxOg" source="_3FYRQJlDEe2dR500zYWxOg" name="someMessage">
+    <operationn xmi:id="_aNbjoJlFEe2dR500zYWxOg" returnVariable="res" returnType="Int" guardd="something"/>
+  </fragments>
+  <fragments xsi:type="sequenceMetaModel:Message" xmi:id="_zoWCUJlGEe2dR500zYWxOg" target="_t65-YJlGEe2dR500zYWxOg" source="_wrEgQJlDEe2dR500zYWxOg" name="someOtherMessage">
+    <operationn xmi:id="_9pxD8JlGEe2dR500zYWxOg" returnVariable="res2" returnType="Double" guardd="lol"/>
+  </fragments>
+  <fragments xsi:type="sequenceMetaModel:Message" xmi:id="_CY5skJlHEe2dR500zYWxOg" target="_3ueKMJlGEe2dR500zYWxOg" source="_t65-YJlGEe2dR500zYWxOg" name="lolol">
+    <operationn xmi:id="_F7H2IJlHEe2dR500zYWxOg" returnVariable="res3" returnType="Float" guardd="sss"/>
+  </fragments>
+  <fragments xsi:type="sequenceMetaModel:Message" xmi:id="_I_lFoJlHEe2dR500zYWxOg" target="_t65-YJlGEe2dR500zYWxOg" source="_wrEgQJlDEe2dR500zYWxOg" name="get">
+    <operationn xmi:id="_NRAekJlHEe2dR500zYWxOg" returnVariable="s" returnType="String" guardd="jjjjj"/>
+  </fragments>
+  <fragments xsi:type="sequenceMetaModel:Message" xmi:id="_O_pKoJlHEe2dR500zYWxOg" target="_3ueKMJlGEe2dR500zYWxOg" source="_t65-YJlGEe2dR500zYWxOg" name="hhh">
+    <operationn xmi:id="_Sjr5IJlHEe2dR500zYWxOg" returnVariable="rrr" returnType="String" guardd="slkjsf"/>
+  </fragments>
+</sequenceMetaModel:SequenceDiagram>

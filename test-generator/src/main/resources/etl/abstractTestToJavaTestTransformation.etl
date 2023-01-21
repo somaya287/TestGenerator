@@ -1,0 +1,213 @@
+
+@lazy
+rule Variable2Variable
+	transform abstractVariable : AbstractTestModel!Variable
+	to javaVariable : JavaTestModel!Variable {
+	
+		javaVariable.name = abstractVariable.name;
+		javaVariable.type = abstractVariable.type;
+}
+
+@lazy
+rule AbstractClassToClass
+	transform abstractClass : AbstractTestModel!Class
+	to class : JavaTestModel!Class {
+
+		class.name = abstractClass.name;
+		if (abstractClass.dependencies.isDefined() and not abstractClass.dependencies.isEmpty())
+			class.dependencies.addAll(abstractClass.dependencies.equivalent("AbstractClassToClass"));
+}
+
+@lazy
+rule Method2MethodCallInstruction
+	transform method : AbstractTestModel!Method
+	to methodCallInstruction : JavaTestModel!MethodCallInstruction {
+		
+		guard : method.class.parent.isDefined()
+	
+		methodCallInstruction.methodName = method.name;
+		methodCallInstruction.class = method.class.equivalent("AbstractClassToClass");
+		methodCallInstruction.returnValue = method.returnValue.equivalent("Variable2Variable");
+		methodCallInstruction.parameters.addAll(method.parameters.equivalent("Variable2Variable"));
+}
+
+@lazy
+rule Class2MockInstruction 
+	transform class : AbstractTestModel!Class
+	to mockInstruction : JavaTestModel!MockInstruction {
+		
+		guard : not class.parent.isDefined()
+		
+		mockInstruction.class = class.equivalent("AbstractClassToClass");
+}
+
+@lazy
+rule Method2MethodMockInstruction
+	transform method : AbstractTestModel!Method
+	to methodMockInstruction : JavaTestModel!MethodMockInstruction {
+		
+		guard : not method.class.parent.isDefined()
+		
+		methodMockInstruction.methodName = method.name;
+		methodMockInstruction.returnValue = method.returnValue.equivalent("Variable2Variable");
+		methodMockInstruction.parameters.addAll(method.parameters.equivalent("Variable2Variable"));
+		methodMockInstruction.mockedClass = method.class.equivalent("Class2MockInstruction");
+}
+
+@lazy
+rule Class2GivenBlock
+	transform class : AbstractTestModel!Class
+	to givenBlock : JavaTestModel!GivenBlock {
+	
+	var	regularInstruction = new JavaTestModel!RegularInstruction;
+	regularInstruction.do = "// here goes all your additional instructions";
+	
+	givenBlock.regularInstructions.add(regularInstruction);
+	givenBlock.mockInstructions.addAll(class.dependencies.equivalent("Class2MockInstruction"));
+}
+
+@lazy
+rule Method2WhenBlock
+	transform method : AbstractTestModel!Method
+	to whenBlock : JavaTestModel!WhenBlock {
+	
+		whenBlock.methodCallInstructions.add(method.equivalent("Method2MethodCallInstruction"));
+		whenBlock.methodMockInstructions.addAll(
+			method.class.dependencies.collect(dep | dep.methods).flatten().equivalent("Method2MethodMockInstruction")
+		);
+}
+
+@lazy
+rule Method2ThenBlock
+	transform method : AbstractTestModel!Method
+	to thenBlock : JavaTestModel!ThenBlock {
+	
+		guard : method.class.parent.isDefined()
+	
+		var assertionTypesWithSingleParam : Set;
+		assertionTypesWithSingleParam = Set {
+			"assertTrue", "assertNull", "assertNotNull", "assertFalse"
+		};
+		
+		var assertionTypesWithTwoParams : Set;
+		assertionTypesWithTwoParams = Set {
+			"assertEquals", "assertNotEquals", "assertArrayEquals"
+		};
+	
+		
+		for (assertion in assertionTypesWithSingleParam) {
+			var assertInstruction = new JavaTestModel!AssertInstruction;
+			assertInstruction.assertionType = assertion;
+			assertInstruction.toCompare = method.equivalent("Method2MethodCallInstruction");
+			thenBlock.assertInstructions.add(assertInstruction);
+		}
+		
+		for (assertion in assertionTypesWithTwoParams) {
+			var assertInstruction = new JavaTestModel!AssertInstruction;
+			assertInstruction.assertionType = assertion;
+			assertInstruction.expected = "your expected value";
+			assertInstruction.toCompare = method.equivalent("Method2MethodCallInstruction");
+			thenBlock.assertInstructions.add(assertInstruction);
+		}
+}
+@lazy
+rule Method2TestMethod
+	transform method : AbstractTestModel!Method
+	to testMethod : JavaTestModel!TestMethod {
+		
+		guard : method.class.parent.isDefined()
+		
+		testMethod.name = "test".concat(method.name.ftuc());
+		testMethod.displayName = "test the method ".concat(method.name);
+		testMethod.givenBlock = method.class.equivalent("Class2GivenBlock");
+		testMethod.whenBlock = method.equivalent("Method2WhenBlock");
+		testMethod.thenBlock = method.equivalent("Method2ThenBlock");
+}
+
+
+
+@lazy
+rule Class2TestClass
+	transform class : AbstractTestModel!Class
+	to testClass : JavaTestModel!TestClass {
+	
+		guard : class.parent.isDefined()
+		
+		// test methods
+		testClass.name = class.name.concat("Test");
+		testClass.displayName = "test the class".concat(class.name);
+		testClass.methods.addAll(class.methods.equivalent("Method2TestMethod"));
+		
+		// after all:
+		var afterAllMethod = new JavaTestModel!AfterAllMethod;
+		var instruction = new JavaTestModel!RegularInstruction;
+		instruction.do = "// here goes the code to be excecuted after all tests";
+		afterAllMethod.instructions.add(instruction);
+		testClass.methods.add(afterAllMethod);
+		
+		// after each:
+		var afterEachMethod = new JavaTestModel!AfterEachMethod;
+		var instruction = new JavaTestModel!RegularInstruction;
+		instruction.do = "// here goes the code to be excecuted after each test";
+		afterEachMethod.instructions.add(instruction);
+		testClass.methods.add(afterEachMethod);
+		
+		// before all:
+		var beforeAllMethod = new JavaTestModel!BeforeAllMethod;
+		var instruction = new JavaTestModel!RegularInstruction;
+		instruction.do = "// here goes the code to be excecuted before all tests";
+		beforeAllMethod.instructions.add(instruction);
+		testClass.methods.add(beforeAllMethod);
+		
+		// before each:
+		var beforeEachMethod = new JavaTestModel!BeforeEachMethod;
+		var instruction = new JavaTestModel!RegularInstruction;
+		instruction.do = "// here goes the code to be excecuted before each test";
+		beforeEachMethod.instructions.add(instruction);
+		testClass.methods.add(beforeEachMethod);
+		
+}
+@lazy
+rule Class2ImportBlock
+	transform class : AbstractTestModel!Class
+	to importBlock : JavaTestModel!ImportBlock {
+		
+		// static methods
+		importBlock.staticMethods.addAll(Collection{
+			"org.mockito.Mockito.*",
+			"org.junit.jupiter.api.Assertions.*"
+		});
+		
+		// Junit classes
+		importBlock.classes.addAll(Collection{
+			"org.junit.jupiter.api.AfterAll",
+			"org.junit.jupiter.api.BeforeAll",
+			"org.junit.jupiter.api.Test",
+			"org.junit.jupiter.api.AfterEach",
+			"org.junit.jupiter.api.BeforeEach",
+			"org.junit.jupiter.api.DisplayName"
+		});
+		
+		// dependencies
+		importBlock.dependencies.addAll(class.dependencies.collect(dep | dep.name));
+}
+@lazy
+rule Class2TestFile 
+	transform class : AbstractTestModel!Class
+	to testFile : JavaTestModel!TestFile {
+		
+		testFile.name = class.name.concat("Test");
+		testFile.testClass = class.equivalent("Class2TestClass");
+		testFile.importBlock = class.equivalent("Class2ImportBlock");
+}
+
+@primary
+rule Class2Package
+	transform class : AbstractTestModel!Class
+	to package : JavaTestModel!TestPackage {
+	
+		guard : class.parent.isDefined()
+	
+		package.name = class.name.toLowerCase().concat("_package");
+		package.testFiles.add(class.equivalent("Class2TestFile"));
+}

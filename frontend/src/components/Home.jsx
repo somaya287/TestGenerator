@@ -30,11 +30,13 @@ export default function Home ()  {
     
 };
 const styles = theme => ({
+
     notchedOutline: {
       borderWidth: "1px",
       borderColor: "yellow !important"
     }
   });
+
 
   
   const TextFile = () => {
@@ -50,6 +52,7 @@ const styles = theme => ({
 
     AddDiagrammesService (event,diagramme,SetresultTest)
 };
+
     return(
         <Grid
         container
@@ -74,6 +77,7 @@ const styles = theme => ({
            
 
     </select>
+
     <label  className='txtField2' style={{color:"white"}}for="standard-select">Upload your Diagram(.xml)</label>
 
         <input id="file" className='txtinpt' type="file" name="country"  placeholder="Select Diagram type"  ></input>
@@ -87,10 +91,9 @@ const styles = theme => ({
 
     </Grid>
     </Box>
+  
    
     </div>
-      
-   
     </Grid>
 
  

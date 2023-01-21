@@ -14,6 +14,7 @@ const AddDiagrammesService = (data,Diagramme,SetresultTest) => {
         }
     }).then(
         (res) => {
+            SetresultTest(res.data)
 console.log(res);
 SetresultTest(res.data)
  
@@ -26,8 +27,16 @@ SetresultTest(res.data)
     );
 
 };
-
-
+/*
+async function uploadFile() {
+    let formData = new FormData(); 
+    formData.append("file", fileupload.files[0]);
+    let response = await fetch('/upload', {
+      method: "POST", 
+      body: formData
+    }); 
+  }
+*/
 
 
 export default AddDiagrammesService;

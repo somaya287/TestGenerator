@@ -1,0 +1,47 @@
+context Test {
+	constraint definedTestClass {
+		check : self.testClass.isDefined()
+		message : "Test class should be defined" 
+	}
+	constraint definedTestMethod {
+		guard : self.satisfies("definedTestClass")
+		check : self.testClass.methods.notEmpty()
+		message : "Test class should have at least one method"
+	}
+}
+
+context Class {
+	constraint hasName {
+		check : self.name.size() > 0
+		message : "the class name shouldn't be null"
+	}
+	constraint hasValidName { 
+		check : self.name.matches("^[A-Z][a-zA-Z0-9]*$")
+		message : "A class name can contain only letters, numbers. It should start with an uppercase letter."
+	}
+}
+
+context Method {
+	constraint hasName {
+		check : self.name.size() > 0 
+		message : "the method name shouldn't be null"
+	}
+	constraint hasValidName { 
+		check : self.name.matches("[a-z][A-Za-z0-9_]*$")
+		message : "A method name can contain only letters, numbers, and underscore. It should start with a lowercase letter"
+	}
+}
+
+context Variable {
+	constraint hasName {
+		check : self.name.size() > 0 
+		message : "the variable name shouldn't be null"
+	}
+	constraint hasValidName { 
+		check : self.name.matches("[A-Za-z0-9_]*$")
+		message : "A variable name can contain only letters, numbers, and underscore."
+	}
+}
+
+
+
