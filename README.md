@@ -1,6 +1,7 @@
 <h1 style="text-align: center;"> <img src="readme/Logo.png" alt="logo" width="30"/> Test Generator </h1>
 
-<p style="text-align: center;"> A web application that generates <b>integration test code</b> in Java based on an uploaded <b>activity/sequence diagram</b> </p>
+<p style="text-align: center;"> A web application that generates <b>integration test code</b> in Java based on an uploaded <b>activity/sequence diagram</b> </p><br/>
+<p style="text-align: center;"> <b>Application Link :</b> <i>http://167.172.141.190:3000</i> </p>
 
 ## 📝 Description 
 Since both sequence and activity diagrams provide a clear and detailed representation of the behaviour of a system, we can generate integration tests based on them. Thus the programmer can delve directly into coding while adhering to the Test Driven Development concepts.
