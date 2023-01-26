@@ -1,3 +1,6 @@
+[%import "../utils/packageUtils.eol";%]
+[%var f = JavaTestModel!TestFile.all.first();%]
+[%var package = f.testPackage.getPackageFullPath();%]
 package [%=package%];
 
 [%if (f.importBlock.isDefined()){%]

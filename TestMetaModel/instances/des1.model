@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="ASCII"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:JavaTestMetaModel="JavaTestMetaModel">
+  <JavaTestMetaModel:TestPackage name="yassirapp_package">
+    <testFiles name="YassirAppTest">
+      <importBlock>
+        <staticMethods>org.mockito.Mockito.*</staticMethods>
+        <staticMethods>org.junit.jupiter.api.Assertions.*</staticMethods>
+        <classes>org.junit.jupiter.api.AfterAll</classes>
+        <classes>org.junit.jupiter.api.BeforeAll</classes>
+        <classes>org.junit.jupiter.api.Test</classes>
+        <classes>org.junit.jupiter.api.AfterEach</classes>
+        <classes>org.junit.jupiter.api.BeforeEach</classes>
+        <classes>org.junit.jupiter.api.DisplayName</classes>
+        <dependencies>AminaApp</dependencies>
+        <dependencies>HajarApp</dependencies>
+        <dependencies>SomiyaApp</dependencies>
+        <dependencies>MimounApp</dependencies>
+      </importBlock>
+      <testClass name="YassirAppTest" displayName="test the classYassirApp">
+        <methods xsi:type="JavaTestMetaModel:TestMethod" name="testWaYasser" displayName="test the method waYasser">
+          <whenBlock>
+            <methodCallInstructions methodName="waYasser" class="/5">
+              <parameters name="a" type="int"/>
+              <returnValue name="waYasserReturnVariable" type="String"/>
+            </methodCallInstructions>
+          </whenBlock>
+          <thenBlock>
+            <assertInstructions assertionType="assertNull" toCompare="/0/@testFiles.0/@testClass/@methods.0/@whenBlock/@methodCallInstructions.0"/>
+            <assertInstructions assertionType="assertTrue" toCompare="/0/@testFiles.0/@testClass/@methods.0/@whenBlock/@methodCallInstructions.0"/>
+            <assertInstructions assertionType="assertNotNull" toCompare="/0/@testFiles.0/@testClass/@methods.0/@whenBlock/@methodCallInstructions.0"/>
+            <assertInstructions assertionType="assertFalse" toCompare="/0/@testFiles.0/@testClass/@methods.0/@whenBlock/@methodCallInstructions.0"/>
+            <assertInstructions assertionType="assertEquals" expected="your expected value" toCompare="/0/@testFiles.0/@testClass/@methods.0/@whenBlock/@methodCallInstructions.0"/>
+            <assertInstructions assertionType="assertNotEquals" expected="your expected value" toCompare="/0/@testFiles.0/@testClass/@methods.0/@whenBlock/@methodCallInstructions.0"/>
+            <assertInstructions assertionType="assertArrayEquals" expected="your expected value" toCompare="/0/@testFiles.0/@testClass/@methods.0/@whenBlock/@methodCallInstructions.0"/>
+          </thenBlock>
+        </methods>
+        <methods xsi:type="JavaTestMetaModel:TestMethod" name="testAchnoAMimoun" displayName="test the method achnoAMimoun">
+          <givenBlock>
+            <regularInstructions do="// here goes all your additional instructions"/>
+            <mockInstructions class="/1"/>
+            <mockInstructions class="/2"/>
+            <mockInstructions class="/3"/>
+            <mockInstructions class="/4"/>
+          </givenBlock>
+          <whenBlock>
+            <methodCallInstructions methodName="achnoAMimoun" class="/5">
+              <parameters name="a" type="int"/>
+              <returnValue name="achnoAMimounReturnVariable" type="String"/>
+            </methodCallInstructions>
+            <methodMockInstructions methodName="waAmina" mockedClass="/0/@testFiles.0/@testClass/@methods.1/@givenBlock/@mockInstructions.0">
+              <parameters name="a" type="int"/>
+              <returnValue name="waAminaReturnVariable" type="String"/>
+            </methodMockInstructions>
+            <methodMockInstructions methodName="waHajar" mockedClass="/0/@testFiles.0/@testClass/@methods.1/@givenBlock/@mockInstructions.1">
+              <parameters name="a" type="int"/>
+              <returnValue name="waHajarReturnVariable" type="String"/>
+            </methodMockInstructions>
+            <methodMockInstructions methodName="achnoAHajar" mockedClass="/0/@testFiles.0/@testClass/@methods.1/@givenBlock/@mockInstructions.1">
+              <parameters name="a" type="int"/>
+              <returnValue name="achnoAHajarReturnVariable" type="String"/>
+            </methodMockInstructions>
+            <methodMockInstructions methodName="achnoASomiya" mockedClass="/0/@testFiles.0/@testClass/@methods.1/@givenBlock/@mockInstructions.2">
+              <parameters name="a" type="int"/>
+              <returnValue name="achnoASomiyaReturnVariable" type="String"/>
+            </methodMockInstructions>
+            <methodMockInstructions methodName="waSomya" mockedClass="/0/@testFiles.0/@testClass/@methods.1/@givenBlock/@mockInstructions.2">
+              <parameters name="a" type="int"/>
+              <returnValue name="waSomyaReturnVariable" type="Integer"/>
+            </methodMockInstructions>
+            <methodMockInstructions methodName="waMimoun" mockedClass="/0/@testFiles.0/@testClass/@methods.1/@givenBlock/@mockInstructions.3">
+              <parameters name="a" type="int"/>
+              <returnValue name="waMimounReturnVariable" type="Boolean"/>
+            </methodMockInstructions>
+            <methodMockInstructions methodName="achnoAMimoun" mockedClass="/0/@testFiles.0/@testClass/@methods.1/@givenBlock/@mockInstructions.3">
+              <parameters name="a" type="int"/>
+              <returnValue name="achnoAMimounReturnVariable" type="String"/>
+            </methodMockInstructions>
+          </whenBlock>
+          <thenBlock>
+            <assertInstructions assertionType="assertNull" toCompare="/0/@testFiles.0/@testClass/@methods.1/@whenBlock/@methodCallInstructions.0"/>
+            <assertInstructions assertionType="assertTrue" toCompare="/0/@testFiles.0/@testClass/@methods.1/@whenBlock/@methodCallInstructions.0"/>
+            <assertInstructions assertionType="assertNotNull" toCompare="/0/@testFiles.0/@testClass/@methods.1/@whenBlock/@methodCallInstructions.0"/>
+            <assertInstructions assertionType="assertFalse" toCompare="/0/@testFiles.0/@testClass/@methods.1/@whenBlock/@methodCallInstructions.0"/>
+            <assertInstructions assertionType="assertEquals" expected="your expected value" toCompare="/0/@testFiles.0/@testClass/@methods.1/@whenBlock/@methodCallInstructions.0"/>
+            <assertInstructions assertionType="assertNotEquals" expected="your expected value" toCompare="/0/@testFiles.0/@testClass/@methods.1/@whenBlock/@methodCallInstructions.0"/>
+            <assertInstructions assertionType="assertArrayEquals" expected="your expected value" toCompare="/0/@testFiles.0/@testClass/@methods.1/@whenBlock/@methodCallInstructions.0"/>
+          </thenBlock>
+        </methods>
+        <methods xsi:type="JavaTestMetaModel:AfterAllMethod">
+          <instructions do="// here goes the code to be excecuted after all tests"/>
+        </methods>
+        <methods xsi:type="JavaTestMetaModel:AfterEachMethod">
+          <instructions do="// here goes the code to be excecuted after each test"/>
+        </methods>
+        <methods xsi:type="JavaTestMetaModel:BeforeAllMethod">
+          <instructions do="// here goes the code to be excecuted before all tests"/>
+        </methods>
+        <methods xsi:type="JavaTestMetaModel:BeforeEachMethod">
+          <instructions do="// here goes the code to be excecuted before each test"/>
+        </methods>
+      </testClass>
+    </testFiles>
+  </JavaTestMetaModel:TestPackage>
+  <JavaTestMetaModel:Class name="AminaApp"/>
+  <JavaTestMetaModel:Class name="HajarApp"/>
+  <JavaTestMetaModel:Class name="SomiyaApp"/>
+  <JavaTestMetaModel:Class name="MimounApp"/>
+  <JavaTestMetaModel:Class name="YassirApp" dependencies="/1 /2 /3 /4"/>
+</xmi:XMI>

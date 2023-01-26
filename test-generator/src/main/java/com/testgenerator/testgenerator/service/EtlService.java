@@ -6,5 +6,6 @@ public interface EtlService {
 
     EmfModel modelToModelTransformation(EmfModel sourceModel,
                                         String etlFileName,
+                                        String targetModelName,
                                         String targetMetaModel) throws Exception;
 }

@@ -13,5 +13,5 @@ rule TestFile2File transform f : TestModel!TestFile {
 
 	template : "testFile2File.egl"
 	parameters : Map{"package" = packageName}
-	target : "src/test/java/" + packagePath + "/" + f.name + ".java" 
+	// target : "./src/test/java/" + packagePath + "/" + f.name + ".java"
 }

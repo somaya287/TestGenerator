@@ -1,30 +1,35 @@
 package com.testgenerator.testgenerator.Controllers;
 
+import com.testgenerator.testgenerator.service.TestGeneratorService;
+import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.w3c.dom.Document;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
+import java.io.IOException;
 import java.io.InputStream;
 
 @Slf4j
 @RestController
-@RequestMapping("/")
+@RequestMapping("")
+@AllArgsConstructor
 public class UploadController {
 
-    @PostMapping("/upload")
-    public ResponseEntity<> handleFileUpload( @RequestParam("file") MultipartFile file ) {
+    private TestGeneratorService testGeneratorService;
 
-        String fileName = file.getOriginalFilename();
-        try {
-            //
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-        }
+    @PostMapping("/upload")
+    public ResponseEntity<String> handleFileUpload(@RequestBody MultipartFile file ) throws Exception{
+        InputStream stream = file.getInputStream();
+        String res = testGeneratorService.generateTest(stream);
+
         return new ResponseEntity<>(
-            HttpStatus.OK;
+                res,
+                HttpStatus.OK
         );
     }
 

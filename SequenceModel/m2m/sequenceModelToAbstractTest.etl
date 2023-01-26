@@ -1,9 +1,30 @@
+pre {
+	var dependencies = new OrderedSet;
+	var previous = new OrderedSet;
+}
+
+operation existsInPrevious(lifeline : String) : Boolean {
+	return dependencies.includes(lifeline);
+}
+
+operation addToDependencies(class : AbstractTestModel!Class) {
+	dependencies.add(class);
+}
+
+operation addToPrevious(lifeline : String) {
+	previous.add(lifeline);
+}
+
+operation getDependencies() : OrderedSet {
+	return dependencies;
+}
+
 @lazy
 rule ParmToVariable
      transform param : SequenceModel!Param
      to variable : AbstractTestModel!Variable {
-        variable.name = param.name;
-        variable.type = param.type;
+        variable.name = param.argName;
+        variable.type = param.argType;
 
 }
 
@@ -29,14 +50,20 @@ rule MessageToMethod
       //   Method.parent.class.name = Message.source.name
       //   Method.parent.class.methodes.add(Method)
      }
+     
 
 @lazy
 rule LifeLineToClass
      transform lifeLine : SequenceModel!LifeLine
      to class : AbstractTestModel!Class {
+     	guard : not existsInPrevious(lifeLine.name) and not lifeLine.start
+     	addToPrevious(lifeLine.name);
+     	
         class.name = lifeLine.name;
-        class.dependencies.addAll(SequenceModel!Message.all.select(it | it.source.name == lifeLine.name).collect(it | it.target).equivalent("LifeLineToClass"));
+        SequenceModel!Message.all.select(it | it.source.name == lifeLine.name).collect(it | it.target).equivalent("LifeLineToClass").println();
         class.methods.addAll(SequenceModel!Message.all.select(it | it.target.name == lifeLine.name).equivalent("MessageToMethod"));
+        
+        addToDependencies(class);
 }
 
 @lazy
@@ -45,19 +72,11 @@ rule LifeLineToStartClass
      to class : AbstractTestModel!Class {
      
      	guard : lifeLine.start
+        SequenceModel!Message.all.select(it | it.source.name == lifeLine.name).collect(it | it.target).equivalent("LifeLineToClass").at(0);
+        class.dependencies.addAll(getDependencies());
         class.name = lifeLine.name;
-        var temp = SequenceModel!Message.all.select(it | it.source.name == lifeLine.name).collect(it | it.target).equivalent("LifeLineToClass").at(0);
-        class.dependencies.add(temp);
-        var temp2;
-        while (not temp.dependencies.isEmpty()) {
-        	temp2 = temp;
-        	temp = temp.dependencies.at(0);
-        	temp.dependencies.clear();
-        	class.dependencies.add(temp);
-        }
         class.methods.addAll(SequenceModel!Message.all.select(it | it.target.name == lifeLine.name).equivalent("MessageToMethod"));
 }
-
 
 
 @primary
