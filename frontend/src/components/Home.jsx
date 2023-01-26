@@ -22,13 +22,23 @@ export default function Home ()  {
   const [diagramme, setDiagramme] = React.useState('');
   const [resultTest, SetresultTest] = React.useState('');
   const [code, setCode] = React.useState(
-    `function add(a, b) {\n  return a + b;\n}`
+    "// Please add a mxGraph format xml file of a sequence/activity diagram"
   );
-  
+  const [file, setFile] = React.useState(null);
   const handleChange = e => {
     setDiagramme(e.target.value);
     
 };
+
+
+const handleFileChange = (e) => {
+  if (!e.target.files) {
+    return;
+  }
+
+  setFile(e.target.files[0]);
+};
+
 const styles = theme => ({
 
     notchedOutline: {
@@ -36,6 +46,8 @@ const styles = theme => ({
       borderColor: "yellow !important"
     }
   });
+
+  const generateCode = () => {}
 
 
   
@@ -48,9 +60,9 @@ const styles = theme => ({
     element.click();
   }
   
-  const handleSubmit = (event) => {
+  const handleSubmit = () => {
 
-    AddDiagrammesService (event,diagramme,SetresultTest)
+    AddDiagrammesService(file,diagramme,SetresultTest)
 };
 
     return(
@@ -80,10 +92,10 @@ const styles = theme => ({
 
     <label  className='txtField2' style={{color:"white"}}for="standard-select">Upload your Diagram(.xml)</label>
 
-        <input id="file" className='txtinpt' type="file" name="country"  placeholder="Select Diagram type"  ></input>
+        <input id="file" className='txtinpt' type="file" name="country"  placeholder="Select Diagram type" onChange={handleFileChange} ></input>
         <Grid item xs={12} style={{marginTop:"600px"}}>
     <div>
-            <button type="submit" className='button' onClick={() => console.log('click')}>
+            <button type="submit" className='button' onClick={handleSubmit}>
                 <div className='button-text'>GENERATE TESTS</div>
                 <div className='button-icon'><ArrowForwardIcon/></div>
             </button>
@@ -108,9 +120,9 @@ const styles = theme => ({
     <Grid item xs={8} style={{marginTop:"30px"}}>
     <div >
         <CodeEditor id="test"
-          value={code}
-          language="js"
-          placeholder="Please enter JS code."
+          value={resultTest}
+          language="java"
+          placeholder="Code Generator V1.0"
           onChange={(evn) => setCode(evn.target.value)}
           padding={15}
           style={{

@@ -1,4 +1,4 @@
-operation TestModel!TestPackage getPackageQualifiedName() : String {
+operation JavaTestModel!TestPackage getPackageQualifiedName() : String {
 	var path : String;
 	path = self.name;
 	if (self.parentPackage.isDefined()) {
@@ -7,7 +7,7 @@ operation TestModel!TestPackage getPackageQualifiedName() : String {
 	return path;
 }
 
-operation TestModel!TestPackage getPackageFullPath() : String {
+operation JavaTestModel!TestPackage getPackageFullPath() : String {
 	var path : String;
 	path = self.name;
 	if (self.parentPackage.isDefined()) {

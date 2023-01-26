@@ -3,21 +3,17 @@ import axios from "axios";
 const AddDiagrammesService = (data,Diagramme,SetresultTest) => {
     const dataToSend = {
         type: {Diagramme},
-        file: data.get('fie'),
+        file: data,
         
     }
-    console.log("data");
-    console.log(dataToSend);
-    axios.post(`urltochange`, dataToSend, {
+    axios.post(`http://localhost:8080/upload`, dataToSend, {
         headers: {
-            'Content-Type': 'application/json',
+            'Content-Type': 'multipart/form-data',
+            "Access-Control-Allow-Origin" : "*"
         }
     }).then(
         (res) => {
-            SetresultTest(res.data)
-console.log(res);
-SetresultTest(res.data)
- 
+            SetresultTest(res.data) 
         }
         ,
         (err) => {

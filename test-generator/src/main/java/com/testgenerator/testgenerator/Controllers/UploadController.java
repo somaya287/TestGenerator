@@ -7,17 +7,13 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import org.w3c.dom.Document;
-
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import java.io.IOException;
 import java.io.InputStream;
 
 @Slf4j
 @RestController
 @RequestMapping("")
 @AllArgsConstructor
+@CrossOrigin(value = "*")
 public class UploadController {
 
     private TestGeneratorService testGeneratorService;

@@ -3,18 +3,18 @@ import CodeEditor, { SelectionText } from "@uiw/react-textarea-code-editor";
 import './style.css'
 import { useEffect, useState } from 'react';
 
-const CodeTextEditor = () => {
+const CodeTextEditor = (generatedCode) => {
 
-    const [code, setCode] = React.useState( {data : ""}
-        `function add(a, b) {\n  return a + b;\n}`
+    const [code, setCode] = React.useState( {data : ""},
+        generatedCode
       );
       
     return (
         <div >
         <CodeEditor
           value={code}
-          language="js"
-          placeholder="Please enter JS code."
+          language="java"
+          placeholder="// Test Generator V1.0"
           onChange={(evn) => setCode(evn.target.value)}
           padding={15}
           style={{

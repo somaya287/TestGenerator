@@ -41,9 +41,5 @@
       <parameters name="a" type="int"/>
       <returnValue name="waYasserReturnVariable" type="String"/>
     </methods>
-    <methods name="achnoAMimoun">
-      <parameters name="a" type="int"/>
-      <returnValue name="achnoAMimounReturnVariable" type="String"/>
-    </methods>
   </testClass>
 </abstractTestMetaModel:Test>

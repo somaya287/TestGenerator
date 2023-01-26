@@ -1,8 +1,8 @@
 import "../utils/packageUtils.eol";
 
-rule TestFile2File transform f : TestModel!TestFile {
+rule TestFile2File transform f : JavaTestModel!TestFile {
 	pre {
-		var package : TestModel!TestPackage;
+		var package : JavaTestModel!TestPackage;
 		package = f.testPackage;
 		var packageName : String;
 		packageName = package.getPackageQualifiedName();

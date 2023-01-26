@@ -18,11 +18,46 @@
       </importBlock>
       <testClass name="YassirAppTest" displayName="test the classYassirApp">
         <methods xsi:type="JavaTestMetaModel:TestMethod" name="testWaYasser" displayName="test the method waYasser">
+          <givenBlock>
+            <regularInstructions do="// here goes all your additional instructions"/>
+            <mockInstructions class="/1"/>
+            <mockInstructions class="/2"/>
+            <mockInstructions class="/3"/>
+            <mockInstructions class="/4"/>
+          </givenBlock>
           <whenBlock>
             <methodCallInstructions methodName="waYasser" class="/5">
               <parameters name="a" type="int"/>
               <returnValue name="waYasserReturnVariable" type="String"/>
             </methodCallInstructions>
+            <methodMockInstructions methodName="waAmina" mockedClass="/0/@testFiles.0/@testClass/@methods.0/@givenBlock/@mockInstructions.0">
+              <parameters name="a" type="int"/>
+              <returnValue name="waAminaReturnVariable" type="String"/>
+            </methodMockInstructions>
+            <methodMockInstructions methodName="waHajar" mockedClass="/0/@testFiles.0/@testClass/@methods.0/@givenBlock/@mockInstructions.1">
+              <parameters name="a" type="int"/>
+              <returnValue name="waHajarReturnVariable" type="String"/>
+            </methodMockInstructions>
+            <methodMockInstructions methodName="achnoAHajar" mockedClass="/0/@testFiles.0/@testClass/@methods.0/@givenBlock/@mockInstructions.1">
+              <parameters name="a" type="int"/>
+              <returnValue name="achnoAHajarReturnVariable" type="String"/>
+            </methodMockInstructions>
+            <methodMockInstructions methodName="achnoASomiya" mockedClass="/0/@testFiles.0/@testClass/@methods.0/@givenBlock/@mockInstructions.2">
+              <parameters name="a" type="int"/>
+              <returnValue name="achnoASomiyaReturnVariable" type="String"/>
+            </methodMockInstructions>
+            <methodMockInstructions methodName="waSomya" mockedClass="/0/@testFiles.0/@testClass/@methods.0/@givenBlock/@mockInstructions.2">
+              <parameters name="a" type="int"/>
+              <returnValue name="waSomyaReturnVariable" type="Integer"/>
+            </methodMockInstructions>
+            <methodMockInstructions methodName="waMimoun" mockedClass="/0/@testFiles.0/@testClass/@methods.0/@givenBlock/@mockInstructions.3">
+              <parameters name="a" type="int"/>
+              <returnValue name="waMimounReturnVariable" type="Boolean"/>
+            </methodMockInstructions>
+            <methodMockInstructions methodName="achnoAMimoun" mockedClass="/0/@testFiles.0/@testClass/@methods.0/@givenBlock/@mockInstructions.3">
+              <parameters name="a" type="int"/>
+              <returnValue name="achnoAMimounReturnVariable" type="String"/>
+            </methodMockInstructions>
           </whenBlock>
           <thenBlock>
             <assertInstructions assertionType="assertNull" toCompare="/0/@testFiles.0/@testClass/@methods.0/@whenBlock/@methodCallInstructions.0"/>
@@ -32,58 +67,6 @@
             <assertInstructions assertionType="assertEquals" expected="your expected value" toCompare="/0/@testFiles.0/@testClass/@methods.0/@whenBlock/@methodCallInstructions.0"/>
             <assertInstructions assertionType="assertNotEquals" expected="your expected value" toCompare="/0/@testFiles.0/@testClass/@methods.0/@whenBlock/@methodCallInstructions.0"/>
             <assertInstructions assertionType="assertArrayEquals" expected="your expected value" toCompare="/0/@testFiles.0/@testClass/@methods.0/@whenBlock/@methodCallInstructions.0"/>
-          </thenBlock>
-        </methods>
-        <methods xsi:type="JavaTestMetaModel:TestMethod" name="testAchnoAMimoun" displayName="test the method achnoAMimoun">
-          <givenBlock>
-            <regularInstructions do="// here goes all your additional instructions"/>
-            <mockInstructions class="/1"/>
-            <mockInstructions class="/2"/>
-            <mockInstructions class="/3"/>
-            <mockInstructions class="/4"/>
-          </givenBlock>
-          <whenBlock>
-            <methodCallInstructions methodName="achnoAMimoun" class="/5">
-              <parameters name="a" type="int"/>
-              <returnValue name="achnoAMimounReturnVariable" type="String"/>
-            </methodCallInstructions>
-            <methodMockInstructions methodName="waAmina" mockedClass="/0/@testFiles.0/@testClass/@methods.1/@givenBlock/@mockInstructions.0">
-              <parameters name="a" type="int"/>
-              <returnValue name="waAminaReturnVariable" type="String"/>
-            </methodMockInstructions>
-            <methodMockInstructions methodName="waHajar" mockedClass="/0/@testFiles.0/@testClass/@methods.1/@givenBlock/@mockInstructions.1">
-              <parameters name="a" type="int"/>
-              <returnValue name="waHajarReturnVariable" type="String"/>
-            </methodMockInstructions>
-            <methodMockInstructions methodName="achnoAHajar" mockedClass="/0/@testFiles.0/@testClass/@methods.1/@givenBlock/@mockInstructions.1">
-              <parameters name="a" type="int"/>
-              <returnValue name="achnoAHajarReturnVariable" type="String"/>
-            </methodMockInstructions>
-            <methodMockInstructions methodName="achnoASomiya" mockedClass="/0/@testFiles.0/@testClass/@methods.1/@givenBlock/@mockInstructions.2">
-              <parameters name="a" type="int"/>
-              <returnValue name="achnoASomiyaReturnVariable" type="String"/>
-            </methodMockInstructions>
-            <methodMockInstructions methodName="waSomya" mockedClass="/0/@testFiles.0/@testClass/@methods.1/@givenBlock/@mockInstructions.2">
-              <parameters name="a" type="int"/>
-              <returnValue name="waSomyaReturnVariable" type="Integer"/>
-            </methodMockInstructions>
-            <methodMockInstructions methodName="waMimoun" mockedClass="/0/@testFiles.0/@testClass/@methods.1/@givenBlock/@mockInstructions.3">
-              <parameters name="a" type="int"/>
-              <returnValue name="waMimounReturnVariable" type="Boolean"/>
-            </methodMockInstructions>
-            <methodMockInstructions methodName="achnoAMimoun" mockedClass="/0/@testFiles.0/@testClass/@methods.1/@givenBlock/@mockInstructions.3">
-              <parameters name="a" type="int"/>
-              <returnValue name="achnoAMimounReturnVariable" type="String"/>
-            </methodMockInstructions>
-          </whenBlock>
-          <thenBlock>
-            <assertInstructions assertionType="assertNull" toCompare="/0/@testFiles.0/@testClass/@methods.1/@whenBlock/@methodCallInstructions.0"/>
-            <assertInstructions assertionType="assertTrue" toCompare="/0/@testFiles.0/@testClass/@methods.1/@whenBlock/@methodCallInstructions.0"/>
-            <assertInstructions assertionType="assertNotNull" toCompare="/0/@testFiles.0/@testClass/@methods.1/@whenBlock/@methodCallInstructions.0"/>
-            <assertInstructions assertionType="assertFalse" toCompare="/0/@testFiles.0/@testClass/@methods.1/@whenBlock/@methodCallInstructions.0"/>
-            <assertInstructions assertionType="assertEquals" expected="your expected value" toCompare="/0/@testFiles.0/@testClass/@methods.1/@whenBlock/@methodCallInstructions.0"/>
-            <assertInstructions assertionType="assertNotEquals" expected="your expected value" toCompare="/0/@testFiles.0/@testClass/@methods.1/@whenBlock/@methodCallInstructions.0"/>
-            <assertInstructions assertionType="assertArrayEquals" expected="your expected value" toCompare="/0/@testFiles.0/@testClass/@methods.1/@whenBlock/@methodCallInstructions.0"/>
           </thenBlock>
         </methods>
         <methods xsi:type="JavaTestMetaModel:AfterAllMethod">

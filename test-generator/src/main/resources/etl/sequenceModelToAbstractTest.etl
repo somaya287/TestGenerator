@@ -60,6 +60,7 @@ rule LifeLineToClass
      	addToPrevious(lifeLine.name);
      	
         class.name = lifeLine.name;
+        SequenceModel!Message.all.select(it | it.source.name == lifeLine.name).collect(it | it.target).equivalent("LifeLineToClass").println();
         class.methods.addAll(SequenceModel!Message.all.select(it | it.target.name == lifeLine.name).equivalent("MessageToMethod"));
         
         addToDependencies(class);
