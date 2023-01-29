@@ -59,7 +59,7 @@ public class TestGeneratorServiceImpl implements TestGeneratorService {
 
         // now we write to the file:
         OutputStream fileOutputStream = new FileOutputStream(
-                "/Users/gh.maymoun/Documents/Projects/MDE/MDEproject/test-generator/src/main/resources/models/sequence.model"
+                "C:\\Users\\Somaya\\MDEproject\\test-generator\\src\\main\\resources\\models\\sequence.model"
         );
 
         fileOutputStream.write(xmlOutput.getBytes());

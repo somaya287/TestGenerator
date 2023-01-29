@@ -6,7 +6,7 @@ const AddDiagrammesService = (data,Diagramme,SetresultTest) => {
         file: data,
         
     }
-    axios.post(`http://localhost:8080/upload`, dataToSend, {
+    axios.post(`http://localhost:8098/upload`, dataToSend, {
         headers: {
             'Content-Type': 'multipart/form-data',
             "Access-Control-Allow-Origin" : "*"

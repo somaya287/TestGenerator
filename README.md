@@ -1,15 +1,12 @@
 <h1 style="text-align: center;"> <img src="readme/Logo.png" alt="logo" width="30"/> Test Generator </h1>
 
 <p style="text-align: center;"> A web application that generates <b>integration test code</b> in Java based on an uploaded <b>activity/sequence diagram</b> </p><br/>
-<p style="text-align: center;"> <b>Application Link :</b> <i>http://167.172.141.190:3000</i> </p>
 
 ## 📝 Description 
 Since both sequence and activity diagrams provide a clear and detailed representation of the behaviour of a system, we can generate integration tests based on them. Thus the programmer can delve directly into coding while adhering to the Test Driven Development concepts.
  
 ## 📺 Demo
-<video controls="controls">
-    <source src="readme/demo.mp4" type="video/mp4">
-</video>
+![Demo](https://github.com/somaya287/TestGenerator/tree/main/readme/demo.gif)
 
 ## ⏩ Workflow 
 To achieve the objective of the project, we implemented the following modeling workflow :
@@ -137,7 +134,7 @@ To achieve the objective of the project, we implemented the following modeling w
 ## 🚀 How to use the project ? 
 1. Export your sequence/activity diagram made in [drawio](https://app.diagrams.net/) in the XML format
 2. Unselect compressed and then click on export 
-3. Acces the following link : [Link to our app](https://app.diagrams.net/)
+3. Acces the following link : [Link to our app]()
 4. Upload your xml file in our UI 
 5. Click on Generate Tests
 
