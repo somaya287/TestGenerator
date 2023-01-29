@@ -6,7 +6,7 @@
 Since both sequence and activity diagrams provide a clear and detailed representation of the behaviour of a system, we can generate integration tests based on them. Thus the programmer can delve directly into coding while adhering to the Test Driven Development concepts.
  
 ## 📺 Demo
-![Demo](https://github.com/somaya287/TestGenerator/tree/main/readme/demo.gif)
+![Demo](/readme/demo.gif)
 
 ## ⏩ Workflow 
 To achieve the objective of the project, we implemented the following modeling workflow :
